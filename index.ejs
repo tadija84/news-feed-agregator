@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+        integrity="sha256-D9M5yrVDqFlla7nlELDaYZIpXfFWDytQtiV+TaH6F1I=" crossorigin="anonymous">
+    <title>New Zealand News</title>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <section class="hero">
+                        <div class="hero-body">
+                            <h1 class="title">
+                                New Zealand News
+                            </h1>
+                        </div>
+                    </section>
+
+                    <% articles.forEach(function(article) { %>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="media">
+                                <% if (article.image) { %>
+                                <div class="media-left">
+                                    <figure class="image is-96x96">
+                                        <img src="<%= article.image %>"
+                                            alt="Article Image">
+                                    </figure>
+                                </div>
+                                <% }; %>
+                                <div class="media-content">
+                                    <a href="<%= article.link %>" class="title is-4"><%= article.title %></a>
+                                    <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;"><%= article.source %></p>
+                                    <%= article.content %>
+                                    <br>
+                                    <time datetime="<%= article.date %>"><%= moment(article.date).tz('Pacific/Auckland').format('dddd, MMMM Do YYYY, h:mm:ss a'); %></time>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

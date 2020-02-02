@@ -4,7 +4,7 @@ const parser = new Parser({
         'Accept': 'application/xhtml+xml,application/xml,application/rss+xml'
     }
 });
-const { radioNzUrls } = require('./feedUrls');
+const { radioNzUrls, stuffUrls, spinoffUrls, scoopUrls, interestUrls, odtUrls } = require('./feedUrls');
 
 
 const requestRss = async (urls) => {
@@ -20,14 +20,105 @@ const radioNz = async () => {
             title: item.title,
             link: item.link,
             content: item.contentSnippet,
-            date: item.isoDate
+            image: null,
+            date: item.isoDate,
+            source: 'Radio NZ'
         })));
     });
     
     return articles;
 };
 
-(async () => {
-    const rnz = await radioNz();
-    console.log(rnz);
-})();
+const stuff = async () => {
+    let articles = [];
+    const rss = await requestRss(stuffUrls);
+
+    rss.forEach(feed => {
+        articles = articles.concat(feed.items.map(item => ({
+            title: item.title,
+            link: item.link,
+            content: item.contentSnippet,
+            image: item.enclosure.url,
+            date: item.isoDate,
+            source: 'Stuff'
+        })));
+    });
+
+    return articles;
+};
+
+const spinoff = async () => {
+    let articles = [];
+    const rss = await requestRss(spinoffUrls);
+    
+    rss.forEach(feed => {
+        articles = articles.concat(feed.items.map(item => ({
+            title: item.title,
+            link: item.link,
+            content: item.contentSnippet,
+            image: null,
+            date: item.isoDate,
+            source: 'The Spinoff'
+        })));
+    });
+
+    return articles;
+}
+
+const scoop = async () => {
+    let articles = [];
+    const rss = await requestRss(scoopUrls);
+
+    rss.forEach(feed => {
+        articles = articles.concat(feed.items.map(item => ({
+            title: item.title,
+            link: item.link,
+            content: item.contentSnippet,
+            image: null,
+            date: item.isoDate,
+            source: 'Scoop'
+        })));
+    });
+
+    return articles;
+};
+
+const interest = async () => {
+    let articles = [];
+    const rss = await requestRss(interestUrls);
+
+    rss.forEach(feed => {
+        articles = articles.concat(feed.items.map(item => ({
+            title: item.title,
+            link: item.link,
+            content: null,
+            image: null,
+            date: item.isoDate,
+            source: 'Interest'
+        })));
+    });
+
+    return articles;
+};
+
+const odt = async () => {
+    let articles = [];
+    const rss = await requestRss(odtUrls);
+
+    rss.forEach(feed => {
+        articles = articles.concat(feed.items.map(item => ({
+            title: item.title,
+            link: item.link,
+            content: item.contentSnippet,
+            image: null,
+            date: item.isoDate,
+            source: 'Otago Daily Times'
+        })));
+    });
+
+    return articles;
+};
+
+module.exports = async () => {
+    return [].concat.apply([], await Promise.all([radioNz(), stuff(), spinoff(), scoop(), interest(), odt()]));
+};
