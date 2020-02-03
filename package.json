@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/finncodes/news-feed#readme",
   "dependencies": {
+    "@sindresorhus/fnv1a": "^2.0.0",
     "ejs": "^3.0.1",
     "fastify": "^2.11.0",
     "moment-timezone": "^0.5.27",
