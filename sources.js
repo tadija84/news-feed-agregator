@@ -8,7 +8,11 @@ const feeds = require('./feeds');
 
 
 const requestRss = async (urls) => {
-    return await Promise.all(urls.map(url => parser.parseURL(url)));
+    try {
+        return await Promise.all(urls.map(url => parser.parseURL(url)));
+    } catch (e) {
+        console.error(e);
+    }
 };
 
 const getArticles = async (feed) => {
