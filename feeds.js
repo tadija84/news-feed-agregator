@@ -61,4 +61,11 @@ const odt = {
     ]
 };
 
-module.exports = [radioNz, stuff, spinoff, scoop, interest, odt];
+const guardian = {
+    name: 'The Guardian',
+    links: [
+        'https://www.theguardian.com/world/newzealand/rss'
+    ]
+};
+
+module.exports = [radioNz, stuff, spinoff, scoop, interest, odt, guardian];

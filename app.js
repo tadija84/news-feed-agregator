@@ -47,6 +47,6 @@ fastify.get('/', async (req, res) => {
     return res;
 });
 
-fastify.listen(3000, (err, addr) => {
+fastify.listen(process.env.PORT || 3000, (err, addr) => {
     console.log('Server running on ' + addr);
 });
