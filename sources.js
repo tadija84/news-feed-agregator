@@ -9,7 +9,8 @@ const feeds = require('./feeds');
 
 const requestRss = async (urls) => {
     try {
-        return await Promise.all(urls.map(url => parser.parseURL(url)));
+        const requests = await Promise.allSettled(urls.map(url => parser.parseURL(url)));
+        return requests.filter(request => request.status === "fulfilled").map(request => request.value);
     } catch (e) {
         console.error(e);
     }

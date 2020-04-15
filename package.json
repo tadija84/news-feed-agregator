@@ -1,6 +1,9 @@
 {
   "name": "news-feed",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.16.x"
+  },
   "private": true,
   "description": "",
   "main": "app.js",
