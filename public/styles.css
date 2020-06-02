@@ -21,19 +21,19 @@
 
 @media screen and (min-width: 768px) {
     .news-item {
-        max-width: 40%;
+        width: 40%;
         margin: 5px;
     }
 }
 
 @media screen and (min-width: 1366px) {
     .news-item {
-        max-width: 30%;
+        width: 30%;
     }
 }
 
 @media screen and (min-width: 1500px) {
     .news-item {
-        max-width: 20%;
+        width: 20%;
     }
 }
