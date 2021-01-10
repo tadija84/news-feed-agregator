@@ -1,0 +1,31 @@
+{
+  "name": "news-feed",
+  "version": "1.0.0",
+  "description": "simple news feed",
+  "main": "app.js",
+  "scripts": {
+    "test": "testing"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "news",
+    "feed"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "moment-timezone": "^0.5.32",
+    "redis": "^3.0.2",
+    "redis-server": "^1.2.2",
+    "rss-parser": "^3.10.0"
+  }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs')%>
+
+<body>
+    
+   <%- include('./partials/header.ejs')%>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="columns is-multiline">
+                <div class="column is-half is-offset-one-quarter">
+                    <!--<section class="hero">
+                        <div class="hero-body">
+                            <h1 class="title">
+                                Balkan news feed
+                            </h1>
+                            <h2 class="subtitle">
+                                Made by TADIJA</a>
+                            </h2>
+                            <iframe src="<%= articles[1].link %>" title="test test test"></iframe>
+                        </div>
+                    </section>-->
+                </div>
+                <div class="column is-full">
+                    <div class="news-content">
+                        <% articles.forEach(function(article) { %>
+                        <div class="card news-item">
+                            <div class="card-content">
+                                <div class="media">
+                                    <% if (article.image) { %>
+                                    <div class="media-left">
+                                        <figure class="image is-96x96">
+                                            <img src="<%= article.image %>" alt="Article Image">
+                                        </figure>
+                                    </div>
+                                    <% }; %>
+                                    <div class="media-content">
+                                        <!-- <% let artUrl="/selected/"+article.link %> -->
+                                        <a href="/selected/?articleLink=<%= article.link %> " class="title is-4"><%= article.title %></a>
+                                        <!-- <a href="<%= '/selected/articleLink/'+article.link %>" class="title is-4"><%= article.title %></a> -->
+                                        <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                                            <%= article.source %></p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <%= article.content %>
+                                    <br>
+                                    <time class="has-text-weight-medium"
+                                        datetime="<%= article.date %>"><%= moment(article.date).tz('Pacific/Auckland').format('dddd, MMMM Do YYYY, h:mm:ss a'); %></time>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('./partials/footer.ejs')%>
+</body>
+
+</html>

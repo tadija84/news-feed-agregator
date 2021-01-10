@@ -1,0 +1,44 @@
+.section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.container.is-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.news-content {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.news-item {
+    flex-grow: 1;
+    margin: 5px 0;
+}
+
+.selected_art{
+    width: 80vw;
+    height: 70vh;
+    margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+    .news-item {
+        width: 40%;
+        margin: 5px;
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .news-item {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .news-item {
+        width: 20%;
+    }
+}
