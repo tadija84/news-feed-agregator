@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <%- include('./partials/head.ejs')%>
 
 <body>
-
+    <section class="section">
+        <h2>Ispratite najnovije aktuelnosti iz regiona</h2>
+    </section>
     <%- include('./partials/header.ejs')%>
     <%- include('./partials/main-navigation.ejs')%>
+    <%- include('./partials/sub-header.ejs')%>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
                 <div class="column is-half is-offset-one-quarter">
+
                 </div>
                 <div class="column is-full">
-                    <%- include('./partials/all-articles.ejs')%>
+                    <%- include('./partials/one-country-articles.ejs')%>
                 </div>
             </div>
         </div>
     </section>
     <%- include('./partials/footer.ejs')%>
-   
 </body>
 
 </html>

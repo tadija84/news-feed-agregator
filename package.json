@@ -1,28 +1,34 @@
 {
   "name": "news-feed",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.16.x"
-  },
-  "private": true,
-  "description": "",
+  "description": "simple news feed",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "testing"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/finncodes/news-feed.git"
+    "url": ""
   },
+  "keywords": [
+    "news",
+    "feed"
+  ],
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/finncodes/news-feed/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/finncodes/news-feed#readme",
+  "homepage": "",
   "dependencies": {
-    "ejs": "^3.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "moment-timezone": "^0.5.27",
-    "redis": "^2.8.0",
-    "rss-parser": "^3.7.4"
+    "moment-timezone": "^0.5.32",
+    "nedb": "^1.8.0",
+    "redis": "^3.0.2",
+    "redis-server": "^1.2.2",
+    "rss-parser": "^3.10.0"
   }
 }

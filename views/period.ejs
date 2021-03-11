@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <%- include('./partials/head.ejs')%>
 
 <body>
@@ -12,14 +9,19 @@
             <div class="columns is-multiline">
                 <div class="column is-half is-offset-one-quarter">
                 </div>
-                <div class="column is-full">
-                    <%- include('./partials/all-articles.ejs')%>
+                <div>
+                    <ul class="time-options">
+                        <li class="time-tab">12h</li>
+                        <li class="time-tab">24h</li>
+                        <li class="time-tab">72h</li>
+                        <li class="time-tab">7dana</li>
+                    </ul>
                 </div>
+               
             </div>
         </div>
     </section>
     <%- include('./partials/footer.ejs')%>
-   
 </body>
 
 </html>

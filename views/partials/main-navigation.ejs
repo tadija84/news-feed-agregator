@@ -1,0 +1,38 @@
+<nav class="navigation-bar">
+    <ul class="navigation-list main-nav-list">
+        <li><a href="/">Glavna</a></li>
+        <li><a href="/najnovije">Najnovije</a></li>
+        <li><a href="/najcitanije">Najcitanije</a></li>
+        <li><a href="/srbija">Srbija</a></li>
+        <li><a href="/crna-gora">Crna Gora</a></li>
+        <li><a href="/bosna-i-hercegovina">Bosna i Hercegovina</a></li>
+        <li><a href="/hrvatska">Hrvatska</a></li>
+        <li><a href="/makedonija">Makedonija</a></li>
+        <li><a href="/">Ljubimci</a></li>
+        <li><a href="/">Putovanja</a></li>
+    </ul>
+    <div class="menu-button">
+        <div class="menu-button__burger"></div>
+    </div>
+
+    <ul class="personal-tabs">
+        <li><a href="/personalizovano">Personalno</a></li>
+        <li><a href="/period">Period</a></li>
+    </ul>
+    <script>
+        const menuBtn = document.querySelector(".menu-button");
+        const hamburger = document.querySelector(".menu-button__burger");
+        // let tabLink = document.querySelectorAll(".nav-tab");
+        menuBtn.addEventListener("click", toggleMenu);
+
+        function toggleMenu() {
+            hamburger.classList.toggle("open");
+            //   let element = document.getElementById("nav-list");
+            element.classList.toggle("open");
+            for (let i = 0; i < tabLink.length; ++i) {
+                tabLink[i].classList.toggle("open");
+            }
+        }
+
+    </script>
+</nav>

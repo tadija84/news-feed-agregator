@@ -1,0 +1,71 @@
+<div class="news-content">
+    <% articles.forEach(function(article) { %>
+
+    <div class="card news-item">
+        <div class="card-content">
+             <% if (article.image) { %>
+                <div class="media-left">
+                    <figure class="image">
+                        <img src="<%= article.image %>" alt="Article Image">
+                    </figure>
+                </div>
+                <% }; %>
+                <div class="media-source">   
+                    <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;">
+                    <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                        <%= article.source %></p>              
+                </div>
+            <div class="media media-data">
+                
+                <div class="media-content">
+                  
+                    <a href="/preview/<%=`${article.title}`%>/<%=`${article.content}`%>/<%=`${article.source}`%>?articleLink=<%=article.link%>&sourceLogo=<%=article.logo%>&artImage=<%=article.image%> "
+                        class="title is-4"><%= article.title %></a>
+                </div>
+              
+            </div>
+           
+            <div class="content media-data">
+                <%= article.contentToShow %>
+                <br>
+                <time class="has-text-weight-medium"
+                    datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
+            </div>
+            <!-- <button
+                onclick="showArticle( '<%= article.title %>','<%= article.content %>','<%= article.source %>','<%= article.link %>', '<%= article.logo %>','<%= article.image %>')">click
+                me now</button> -->
+
+        </div>
+    </div>
+    <% }); %>
+
+    <script>
+        async function showArticle(title, content, source, link, logo, image) {
+            console.log("blablablabla")
+            let request = {
+                title: title,
+                content: content,
+                source: source,
+                link: link,
+                logo: logo,
+                image: image
+            };
+            let data = JSON.stringify(request);
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: 'include',
+                body: data,
+            };
+            fetch("/showarticle", options);
+
+        };
+
+        // async function showThis(){
+        //     console.log('ahahahahah!')
+        //     fetch("/preview")
+        // }
+    </script>
+</div>

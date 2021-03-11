@@ -1,0 +1,35 @@
+<div class="news-content">
+    <% articles.forEach(function(article) { %>
+        <% if (article.drzava==subpath) { %>
+    <div class="card news-item">
+        <div class="card-content">
+            <% if (article.image) { %>
+                <div class="media-left">
+                    <figure class="image">
+                        <img src="<%= article.image %>" alt="Article Image">
+                    </figure>
+                </div>
+                <% }; %>
+                <div class="media-source">   
+                    <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;">
+                    <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                        <%= article.source %></p>              
+                </div>
+            <div class="media media-data">
+                
+                <div class="media-content">
+                    <a href="/preview/<%=`${article.title}`%>/<%=`${article.content}`%>/<%=`${article.source}`%>?articleLink=<%=article.link%>&sourceLogo=<%=article.logo%>&artImage=<%=article.image%> "
+                        class="title is-4"><%= article.title %></a>
+               </div>
+            </div>
+            <div class="content">
+                <%= article.contentToShow %>
+                <br>
+                <time class="has-text-weight-medium"
+                    datetime="<%= article.date %>"><%= moment(article.date).tz('Pacific/Auckland').format('dddd, MMMM Do YYYY, h:mm:ss a'); %></time>
+            </div>
+        </div>
+    </div>
+    <% }; %>
+    <% }); %>
+</div>

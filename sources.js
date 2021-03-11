@@ -1,48 +1,117 @@
-const Parser = require('rss-parser');
+const Parser = require("rss-parser");
 const parser = new Parser({
-    headers: {
-        'Accept': 'application/xhtml+xml,application/xml,application/rss+xml'
-    }
+  headers: {
+    Accept: "application/xhtml+xml,application/xml,application/rss+xml",
+  },
 });
-const feeds = require('./feeds');
-
+const feeds = require("./feeds");
 
 const requestRss = async (urls) => {
-    try {
-        const requests = await Promise.allSettled(urls.map(url => parser.parseURL(url)));
-        return requests.filter(request => request.status === "fulfilled").map(request => request.value);
-    } catch (e) {
-        console.error(e);
+  try {
+    const feedLinks = urls.map((url) => parser.parseURL(url));
+    //ovde je i dalje array
+    //const requests =await Promise.race(feedLinks); //ovde je umesto Promise.race bio Promise.allSetled
+    const requests = [];
+    for (let i = 0; i < feedLinks.length; i++) {
+      let newFeed = await (feedLinks[i]);
+      requests.push(newFeed);
     }
+   // console.log("requests su ovde "+requests[0].title);//ovde je niz objekata
+    //const toReturn = requests.filter((request) => request.status === "fulfilled").map((request) => request.value);
+    const toReturn = [];
+    for(let j=0;j<requests.length; j++){
+      if(requests[j]){
+        //console.log("this is esensial ",requests[j]);
+        toReturn.push(requests[j]);
+      }
+    }
+    return toReturn;
+  } catch (e) {
+    console.error("ERROR IS in sources.js",e);
+  }
 };
 
-const getArticles = async (feed) => {
-    let articles = [];
-    const rss = await requestRss(feed.links);
-
-    rss.forEach(rssFeed => {
-        rssFeed.items.forEach(item => {
-            let imageLink = null;
-            if (typeof item.enclosure !== 'undefined') {
-                imageLink = item.enclosure.url;
-            }
-
-            if (articles.filter(article => (article.title === item.title) && (article.source === feed.name)).length === 0) {
-                articles.push({
-                    title: item.title,
-                    link: item.link,
-                    content: item.contentSnippet,
-                    image: imageLink,
-                    date: item.isoDate,
-                    source: feed.name
-                });
-            }
+const getArticles = async (feed, reqLinks) => {
+  let articles = [];
+  const rss = await requestRss(feed[reqLinks]);
+  rss.forEach((rssFeed) => {
+    rssFeed.items.forEach((item) => {
+      let imageLink = null;
+      if (typeof item.enclosure !== "undefined") {
+        imageLink = item.enclosure.url;
+      }
+      // let category=[];
+      // if (item.category){
+      //   category.push(item.category);
+      // }
+      if (
+        articles.filter(
+          (article) =>
+            article.title === item.title && article.source === feed.name
+        ).length === 0
+      ) {     let contentToShow=item.contentSnippet.slice(0, 250)+"...";
+        articles.push({
+          title: item.title,
+          link: item.link,
+          content: item.contentSnippet,
+          image: imageLink,
+          date: item.isoDate,
+          source: feed.name,
+          logo:feed.logoURL,
+          drzava: feed.drzava,
+          contentToShow: contentToShow
         });
+      }
     });
-
-    return articles;
+  });  
+  return articles;
 };
 
-module.exports = async () => {
-    return [].concat.apply([], await Promise.all(feeds.map(feed => getArticles(feed))));
+module.exports.source = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "links")))
+  );
+};
+module.exports.politika = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "politika")))
+  );
+};
+module.exports.drustvo = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "drustvo")))
+  );
+};
+module.exports.hronika = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "hronika")))
+  );
+};
+module.exports.vesti = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "vesti")))
+  );
+};
+module.exports.kultura = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "kultura")))
+  );
+};
+module.exports.zanimljivosti = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "zanimljivosti")))
+  );
+};
+module.exports.sport = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "sport")))
+  );
 };

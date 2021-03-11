@@ -1,38 +1,68 @@
-const radioNz = {
-    name: 'Radio NZ',
+const blic = {
+    logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
+    name: 'Blic',
     links: [
-        'https://www.rnz.co.nz/rss/business.xml',
-        'https://www.rnz.co.nz/rss/on-the-inside.xml',
-        'https://www.rnz.co.nz/rss/country.xml',
-        'https://www.rnz.co.nz/rss/environment.xml',
-        'https://www.rnz.co.nz/rss/identity.xml',
-        'https://www.rnz.co.nz/rss/in-depth.xml',
-        'https://www.rnz.co.nz/rss/ldr.xml',
-        'https://www.rnz.co.nz/rss/media-technology.xml',
-        'https://www.rnz.co.nz/rss/national.xml',
-        'https://www.rnz.co.nz/rss/pacific.xml',
-        'https://www.rnz.co.nz/rss/political.xml',
-        'https://www.rnz.co.nz/rss/sport.xml',
-        'https://www.rnz.co.nz/rss/te-manu-korihi.xml',
-        'https://www.rnz.co.nz/rss/world.xml'
-    ]
+        'https://www.blic.rs/rss/Vesti/Politika',
+        'https://www.blic.rs/rss/Vesti/Korona-virus-Srbija',
+        'https://www.blic.rs/rss/Vesti/Drustvo',
+        'https://www.blic.rs/rss/Vesti/Hronika',
+        'https://www.blic.rs/rss/Zabava/Vesti',
+        'https://www.blic.rs/rss/Kultura/Vesti',
+        'https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'
+    ],
+    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
+    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
+    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    sport: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    drzava: ['srbija']
 };
 
-const stuff = {
-    name: 'Stuff',
+const oslobodjenje = {
+     logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
+    name: 'Oslobodjenje',
     links: [
-        'https://www.stuff.co.nz/rss'
-    ]
+        'https://www.oslobodjenje.ba/feed'
+    ],
+    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
+    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
+    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+   sport: [ ],
+   drzava: ['bosna-i-hercegovina']
 };
 
-const spinoff = {
-    name: 'The Spinoff',
+const danas = {
+     logoURL: 'https://www.danas.rs/wp-content/themes/danas/assets/public/images/danas-logo-white.png?x62496',
+   
+    name: 'Danas',
     links: [
-        'https://thespinoff.co.nz/feed'
-    ]
+        'https://www.danas.rs/feed/',
+        'https://www.danas.rs/rubrika/drustvo/feed',
+        'https://www.danas.rs/rubrika/politika/feed',
+        'https://www.danas.rs/rubrika/dijalog/feed',
+        'https://www.danas.rs/rubrika/ekonomija/feed',
+        'https://www.danas.rs/rubrika/svet/feed',
+        'https://www.danas.rs/rubrika/sport/feed',
+        'https://www.danas.rs/rubrika/kultura/feed'
+    ],
+    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
+    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
+    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    sport: [],
+    drzava: ['srbija']
 };
 
 const scoop = {
+    logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
+   
     name: 'Scoop',
     links: [
         'http://www.scoop.co.nz/storyindex/index.rss?s.c=BU',
@@ -44,28 +74,89 @@ const scoop = {
         'http://www.scoop.co.nz/storyindex/index.rss?s.c=CU',
         'http://www.scoop.co.nz/storyindex/index.rss?s.c=ED',
         'http://www.scoop.co.nz/storyindex/index.rss?s.c=GE'
-    ]
+    ],
+    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
+    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
+    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    sport: [],
+    drzava: ['hrvatska']
 };
 
-const interest = {
-    name: 'Interest',
+const politika= {
+    logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
+   
+    name: 'Politika',
     links: [
-        'https://www.interest.co.nz/rss.xml'
-    ]
+        'http://www.politika.rs/rss'
+    ],
+    politika: [],
+    drustvo: [ ],
+    hronika: [ ],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    sport: [],
+    drzava: ['srbija']
 };
-
-const odt = {
-    name: 'Otago Daily Times',
+const dnevniAvaz= {
+    logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
+   
+    name: 'Dnevni Avaz',
     links: [
-        'https://www.odt.co.nz/news/feed'
-    ]
+        'https://avaz.ba/rss'
+    ],
+    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
+    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
+    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    sport: [],
+    drzava: ['bosna-i-hercegovina']
 };
 
-const guardian = {
-    name: 'The Guardian',
+const jutarnji = {
+    logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
+   
+    name: 'Jutarnji list',
     links: [
-        'https://www.theguardian.com/world/newzealand/rss'
-    ]
+        'https://www.jutarnji.hr/feed'
+    ],
+    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
+    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
+    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    sport: [],
+    drzava: ['hrvatska']
 };
 
-module.exports = [radioNz, stuff, spinoff, scoop, interest, odt, guardian];
+const slobodnaDalmacija = {
+    logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
+   
+    name: 'Slobodna Dalmacija',
+    links: [
+        'https://slobodnadalmacija.hr/feed/category/119',
+        'https://slobodnadalmacija.hr/feed/category/241',
+        'https://slobodnadalmacija.hr/feed/category/242',
+        'https://slobodnadalmacija.hr/feed/category/244',
+        'https://slobodnadalmacija.hr/feed/category/245',
+        'https://slobodnadalmacija.hr/feed/category/268',
+        'https://slobodnadalmacija.hr/feed/category/269',
+        'https://slobodnadalmacija.hr/feed/category/255'
+    ],
+    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
+    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
+    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
+    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
+    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
+    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
+    sport: [],
+    drzava: ['hrvatska']
+};
+
+module.exports = [blic, danas, politika, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];

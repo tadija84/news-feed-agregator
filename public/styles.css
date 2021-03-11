@@ -1,39 +1,207 @@
+.hero_head {
+  width: 100vw;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../images/waldemar-brandt-JYPDh4ter10-unsplash.jpg'); */
+}
+.titles_subtitles {
+  text-align: center;
+  padding-top: 10vh;
+}
+.big-page-title {
+  font-size: 4em;
+}
+.search-form {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  display: flex;
+}
+.navigation-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  top: 0;
+  position: sticky;
+  z-index: 5;
+}
+.navigation-list {
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.main-nav-list {
+  background-color: #b5e48c;
+}
+.main-nav-list > li {
+  margin: 0;
+}
+.main-nav-list > li:hover {
+  background-color: #d9ed92;
+}
+.subtitles-navigation {
+  top: 5vh;
+  background-color: #e6e48d;
+}
+.menu-button {
+  display: block;
+  position: absolute;
+  z-index: 17;
+  right: 5vw;
+  top: 5vw;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.menu-button__burger {
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+  width: 28px;
+  height: 3px;
+  background-color: turquoise;
+  transition: all 0.5s ease-in-out;
+}
+.menu-button__burger::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  width: 28px;
+  height: 3px;
+  background-color: turquoise;
+  transition: all 0.5s ease-in-out;
+}
+.menu-button__burger::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 28px;
+  height: 3px;
+  background-color: turquoise;
+  transition: all 0.5s ease-in-out;
+}
+.menu-button__burger.open {
+  transform: rotate(360deg);
+  background: transparent;
+}
+.menu-button__burger.open::before {
+  transform: rotate(45deg) translate(5px, 8px);
+}
+.menu-button__burger.open::after {
+  width: 28px;
+  transform: rotate(-45deg) translate(3px, -7px);
+}
+
 .section {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .container.is-fluid {
-    padding-left: 0;
-    padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .news-content {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .news-item {
-    flex-grow: 1;
-    margin: 5px 0;
+  flex-grow: 1;
+  margin: 5px 0;
+  width: 100%;
 }
-
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+}
+.media {
+  width: 90%;
+  margin: auto;
+}
+.media-left {
+  width: 100%;
+}
+.media-source {
+  display: flex;
+  justify-content: space-evenly;
+}
+.selected_art {
+  width: 80vw;
+  height: 70vh;
+  margin: 0 auto;
+}
+.card-selected {
+  margin: 0;
+  width: 100%;
+}
+.article-link-div {
+  width: 100%;
+  display: flex;
+}
+.article-link {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #007aff;
+  color: white;
+  padding: 5px 0;
+}
+.time-options {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  border: solid yellowgreen 1px;
+}
+.time-tab {
+  width: 10vw;
+}
+.time-tab:hover {
+  border-bottom: solid yellowgreen 3px;
+}
+.soc-nets {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.viber_share {
+  display: block;
+  width: 50px;
+  height: 20px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(../images/share_purple_512_normal.png);
+}
 @media screen and (min-width: 768px) {
-    .news-item {
-        width: 40%;
-        margin: 5px;
-    }
+  .news-item {
+    width: 40%;
+    margin: 5px;
+  }
 }
 
 @media screen and (min-width: 1366px) {
-    .news-item {
-        width: 30%;
-    }
+  .news-item {
+    width: 30%;
+  }
 }
 
 @media screen and (min-width: 1500px) {
-    .news-item {
-        width: 20%;
-    }
+  .news-item {
+    width: 20%;
+  }
 }

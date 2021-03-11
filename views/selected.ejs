@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs')%>
+
+<body>
+    <%- include('./partials/header.ejs')%>
+    <%- include('./partials/main-navigation.ejs')%>
+    <section class="section">  <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
+        <h4>ovo je selektovano
+
+        </h4>
+       <iframe src="<%= linkPath %>" title="test test test" class="selected_art"></iframe>
+
+    </section>
+    <%- include('./partials/footer.ejs')%>
+
+    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+</body>
+
+</html>
