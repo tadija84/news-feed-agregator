@@ -1,38 +1,42 @@
 <nav class="navigation-bar">
     <ul class="navigation-list main-nav-list">
-        <li><a href="/">Glavna</a></li>
-        <li><a href="/najnovije">Najnovije</a></li>
-        <li><a href="/najcitanije">Najcitanije</a></li>
-        <li><a href="/srbija">Srbija</a></li>
-        <li><a href="/crna-gora">Crna Gora</a></li>
-        <li><a href="/bosna-i-hercegovina">Bosna i Hercegovina</a></li>
-        <li><a href="/hrvatska">Hrvatska</a></li>
-        <li><a href="/makedonija">Makedonija</a></li>
-        <li><a href="/">Ljubimci</a></li>
-        <li><a href="/">Putovanja</a></li>
+        <li class="glavna-link"><a href="/">Glavna</a></li>
+        <li class="tab-link"><a href="/najnovije">Najnovije</a></li>
+        <li class="tab-link"><a href="/najcitanije">Najcitanije</a></li>
+        <li class="tab-link"><a href="/srbija">Srbija</a></li>
+        <li class="tab-link"><a href="/crna-gora">Crna Gora</a></li>
+        <li class="tab-link"><a href="/bosna-i-hercegovina">BiH</a></li>
+        <li class="tab-link"><a href="/hrvatska">Hrvatska</a></li>
+        <li class="tab-link"><a href="/makedonija">Makedonija</a></li>
+        <li class="tab-link"><a href="/">Ljubimci</a></li>
+        <li class="tab-link"><a href="/">Putovanja</a></li>
+        <li class="tab-link"><a href="/dodatno">Jos
+            <!-- <div class="menu-button">
+                <div class="menu-button__burger"></div>
+            </div> -->
+        </a>
+        </li>
     </ul>
-    <div class="menu-button">
-        <div class="menu-button__burger"></div>
-    </div>
 
-    <ul class="personal-tabs">
+
+    <!-- <ul class="personal-tabs">
         <li><a href="/personalizovano">Personalno</a></li>
         <li><a href="/period">Period</a></li>
-    </ul>
+    </ul> -->
     <script>
-        const menuBtn = document.querySelector(".menu-button");
-        const hamburger = document.querySelector(".menu-button__burger");
-        // let tabLink = document.querySelectorAll(".nav-tab");
-        menuBtn.addEventListener("click", toggleMenu);
+        // const menuBtn = document.querySelector(".menu-button");
+        // const hamburger = document.querySelector(".menu-button__burger");
+        // // let tabLink = document.querySelectorAll(".nav-tab");
+        // menuBtn.addEventListener("click", toggleMenu);
 
-        function toggleMenu() {
-            hamburger.classList.toggle("open");
-            //   let element = document.getElementById("nav-list");
-            element.classList.toggle("open");
-            for (let i = 0; i < tabLink.length; ++i) {
-                tabLink[i].classList.toggle("open");
-            }
-        }
+        // function toggleMenu() {
+        //     hamburger.classList.toggle("open");
+        //     //   let element = document.getElementById("nav-list");
+        //    // element.classList.toggle("open");
+        //     // for (let i = 0; i < tabLink.length; ++i) {
+        //     //     tabLink[i].classList.toggle("open");
+        //     // }
+        // }
 
     </script>
 </nav>

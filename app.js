@@ -219,6 +219,10 @@ app.get("/selected/", async (req, res) => {
   res.render("selected", { linkPath, title: "Selected" });
 });
 
+app.get("/dodatno", async (req, res)=>{
+  console.log("dodatno je aktivno")
+  res.render("dodatno", { title: "Dodatno" });
+})
 // app.post("/showarticle", (req, res) => {
 //   const data = req.body;
 
