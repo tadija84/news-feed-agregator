@@ -49,7 +49,8 @@ const getArticles = async (feed, reqLinks) => {
           (article) =>
             article.title === item.title && article.source === feed.name
         ).length === 0
-      ) {     let contentToShow=item.contentSnippet.slice(0, 180)+"...";
+      ) {     
+        let contentToShow=item.contentSnippet.slice(0, 180)+"...";
         articles.push({
           title: item.title,
           link: item.link,

@@ -9,10 +9,13 @@
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
-                <div class="column is-half is-offset-one-quarter">
-                </div>
                 <div class="column is-full">
-                    <%- include('./partials/all-articles.ejs')%>
+                    <% articles.forEach(function(article) { %>
+                  <p><a href="/selected/?articleLink=<%=article.link%>"><%= article.title %></a></p>
+                  
+
+                    <% }); %>
+                 
                 </div>
             </div>
         </div>
