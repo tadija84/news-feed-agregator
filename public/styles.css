@@ -264,6 +264,14 @@ width: 100%;
   background-repeat: no-repeat;
   background-image: url(../images/share_purple_512_normal.png);
 }
+.portal-picture{
+  width: 25vw;
+  height: 30vh;
+  background-color: #007aff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 @media screen and (min-width: 768px) {
   .news-item {
     width: 40%;

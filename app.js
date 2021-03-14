@@ -15,6 +15,7 @@ const {
   zanimljivosti,
   sport,
 } = require("./sources");
+const {portali} = require("./sviPortali")
 const moment = require("moment-timezone");
 var cookieParser = require("cookie-parser");
 
@@ -294,8 +295,8 @@ app.get("/dodatno", async (req, res)=>{
 //   res.render("showarticle", { article, moment, title: "Pregled vesti" });
 // });
 app.get("/portali", async (req, res)=>{
-  console.log("portali je aktivno")
-  res.render("portali", { title: "Dodatno" });
+  let portals = await portali();
+  res.render("portali", { title: "Medijski portali koje vi birate", portals });
 })
 app.post("/showarticle", async (req, res) => {
   const data = req.body;

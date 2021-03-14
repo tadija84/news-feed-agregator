@@ -10,8 +10,19 @@
     </div>
     <section class="section">
         <div class="container is-fluid">
+            <div class="columns is-multiline">
+                
+                    
+            <% portals.forEach(function(portal) { %>
+                <div>
+                    <div class="portal-picture" style="background-image: url(<%=`${portal.logo}`%>)"></div>
+                    <div><%=portal.name%></div>
+                </div>
+
+                <% }); %>
             
-            
+           
+            </div>
         </div>
     </section>
     <%- include('./partials/footer.ejs')%>
