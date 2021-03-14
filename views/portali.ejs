@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 
 <%- include('./partials/head.ejs')%>
 
@@ -10,18 +10,13 @@
     </div>
     <section class="section">
         <div class="container is-fluid">
-            <div class="columns is-multiline">
-                
-                    
+            <div class="columns is-multiline">                
             <% portals.forEach(function(portal) { %>
                 <div>
                     <div class="portal-picture" style="background-image: url(<%=`${portal.logo}`%>)"></div>
-                    <div><%=portal.name%></div>
+                    <div><a href="/portal/<%=`${portal.name}`%>"><%=portal.name%></a> </div>
                 </div>
-
-                <% }); %>
-            
-           
+                <% }); %>          
             </div>
         </div>
     </section>

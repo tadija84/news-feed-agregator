@@ -1,6 +1,9 @@
 *{
   box-sizing: border-box;
 }
+body{
+  min-height: 100vh;
+}
 .hero_head {
   height: 120px;
   padding-left: 1.5rem;

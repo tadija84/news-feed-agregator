@@ -298,6 +298,22 @@ app.get("/portali", async (req, res)=>{
   let portals = await portali();
   res.render("portali", { title: "Medijski portali koje vi birate", portals });
 })
+app.get("/portal/:portName", async (req, res)=>{
+  let timelapseint = await req.cookies["timelapseint"];
+  if(timelapseint=="undefined"){
+    timelapseint=604800000;
+  }
+  let portName=req.params.portName;
+  allArticles = await source();
+  let articles = []
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    for(let i=0;i<allArticles.length;i++){
+     if (allArticles[i].source==portName){
+articles.push(allArticles[i]);
+     }
+    }
+    return res.render("index", { articles, moment, title: portName, timelapseint });
+})
 app.post("/showarticle", async (req, res) => {
   const data = req.body;
   let article = {
@@ -351,7 +367,6 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
     image: req.query.artImage,
   };
   saveAsRead(article);
-  //console.log("podaci su", article);
   res.render("preview", { article, moment, title: "Pregled vesti" });
   // const articleJson = await req.cookies["context"];
   // let article = JSON.parse(articleJson)
@@ -359,6 +374,7 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
   //   res.clearCookie("context", { httpOnly: true });
   // res.render("selected", { linkPath : "https://www.codota.com/code/javascript/functions/express/Response/render", title: "Selected" });
 });
+
 function saveAsRead(article){
   let date = new Date();
   let time = date.getTime();
@@ -367,10 +383,8 @@ function saveAsRead(article){
     console.log("Number of old articles removed ",numRemoved)
   });
   database.find({ link: article.link }, (err, result) => {
-    console.log("result is",result.length)
-    
-    if(result.length==0){
-      
+    console.log("result is",result.length)    
+    if(result.length==0){    
       let data={
         title: article.title,
         content: article.content,
