@@ -10,13 +10,21 @@
     </div>
     <section class="section">
         <div class="container is-fluid">
-            <div class="columns is-multiline">                
-            <% portals.forEach(function(portal) { %>
-                <div>
-                    <div class="portal-picture" style="background-image: url(<%=`${portal.logo}`%>)"></div>
-                    <div><a href="/portal/<%=`${portal.name}`%>"><%=portal.name%></a> </div>
+            <div class="columns is-multiline">
+                <% portals.forEach(function(portal) { %>
+                <div class="card news-item">
+                    <div class="card-content">
+                        <div class="picture-container">
+                        <a href="/portal/<%=`${portal.name}`%>">
+                            <img class="portal-picture" src="<%=`${portal.logo}`%>" alt="portal logo">
+                          </a>
+                        </div>
+                        <!-- <div class="portal-picture" style="background-image: url(<%=`${portal.logo}`%>)"></div> -->
+                        <div class="portal-name"><a class="potal-name-link"
+                                href="/portal/<%=`${portal.name}`%>"><%=portal.name%></a> </div>
+                    </div>
                 </div>
-                <% }); %>          
+                <% }); %>
             </div>
         </div>
     </section>

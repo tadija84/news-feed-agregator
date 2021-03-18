@@ -15,7 +15,9 @@
             </div>
             <% }; %>
             <div class="media-source">
-                <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;">
+                <div class="article-source-logo"  style="background-image: url(./images/logoi-portala/<%=`${article.logo}`%>)"></div>
+              
+                <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;"> -->
                 <time class="day-n-time"
                     datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
 

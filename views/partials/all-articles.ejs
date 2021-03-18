@@ -1,9 +1,11 @@
-<div class="news-content">
+<div class="news-content"> 
     <% articles.forEach(function(article) { %>
+     
         <% let now=new Date()%>
-        <% let pubdate=new Date(article.date)%>
+        <% let pubdate=new Date(article.date)%> 
         <% if (now.getTime()-pubdate.getTime()< timelapseint) { %>
     <div class="card news-item">
+       
         <div class="card-content">
             <% if (article.image) { %>
             <div class="article-picture" style="background-image: url(<%=`${article.image}`%>)">
@@ -13,12 +15,23 @@
             </div>
             <% }; %>
             <div class="media-source">
-                <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;">
+                
+                
+                <div class="article-source-logo"  style="background-image: url(./images/logoi-portala/<%=`${article.logo}`%>)"></div>
+                <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;"> -->
                 <time class="day-n-time"
                     datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
             </div>
             <div class="media media-data">
                 <div class="media-content">
+                    <!-- <div>
+                    <p>this is image<%= article.image %></p> <br>
+        <%= article.logo %> <br>
+        <%= article.source %> <br>
+        <%= article.title %> <br>
+        <%= article.link %> <br>
+        <%= article.content %>  <br>
+                </div> -->
                     <a href="/preview/<%=`${article.title}`%>/<%=`${article.content}`%>/<%=`${article.source}`%>?articleLink=<%=article.link%>&sourceLogo=<%=article.logo%>&artImage=<%=article.image%> "
                         class="title is-4"><%= article.title %></a>
                 </div>

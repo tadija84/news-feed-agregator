@@ -15,7 +15,7 @@ const {
   zanimljivosti,
   sport,
 } = require("./sources");
-const {portali} = require("./sviPortali")
+const { portali } = require("./sviPortali");
 const moment = require("moment-timezone");
 var cookieParser = require("cookie-parser");
 
@@ -29,7 +29,6 @@ database.loadDatabase();
 //     Accept: "application/xhtml+xml,application/xml,application/rss+xml",
 //   },
 // });
-
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
@@ -45,8 +44,8 @@ app.use(cookieParser());
 
 app.get("/", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let articles = null;
   if ((await existsAsync("articles")) === 1) {
@@ -54,6 +53,7 @@ app.get("/", async (req, res) => {
   } else {
     articles = await source();
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
     await setAsync("articles", 1800, JSON.stringify(articles));
   }
   // articles.forEach((article) => {
@@ -62,20 +62,21 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/najnovije", async (req, res) => {
-  
-  
-  
-    let articles = await source();
-    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-    await setAsync("articles", 1800, JSON.stringify(articles));
-
-  return res.render("index", { articles, moment, title: "Home", timelapseint:43200000 });
+  let articles = await source();
+  articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+  await setAsync("articles", 1800, JSON.stringify(articles));
+  return res.render("index", {
+    articles,
+    moment,
+    title: "Najnovije vesti",
+    timelapseint: 43200000,
+  });
 });
 
 app.get("/srbija", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let articles = null;
   if ((await existsAsync("articles")) === 1) {
@@ -90,14 +91,14 @@ app.get("/srbija", async (req, res) => {
     moment,
     title: "Srbija",
     subpath: "srbija",
-    timelapseint
+    timelapseint,
   });
 });
 
 app.get("/crna-gora", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let articles = null;
   articles = await source();
@@ -106,14 +107,14 @@ app.get("/crna-gora", async (req, res) => {
     moment,
     title: "Crna Gora",
     subpath: "crna-gora",
-    timelapseint
+    timelapseint,
   });
 });
 
 app.get("/bosna-i-hercegovina", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let articles = null;
   articles = await source();
@@ -122,14 +123,14 @@ app.get("/bosna-i-hercegovina", async (req, res) => {
     moment,
     title: "Bosna i Hercegovina",
     subpath: "bosna-i-hercegovina",
-    timelapseint
+    timelapseint,
   });
 });
 
 app.get("/hrvatska", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let articles = null;
   articles = await source();
@@ -138,13 +139,13 @@ app.get("/hrvatska", async (req, res) => {
     moment,
     title: "Hrvatska",
     subpath: "hrvatska",
-    timelapseint
+    timelapseint,
   });
 });
 app.get("/makedonija", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let articles = null;
   articles = await source();
@@ -153,14 +154,14 @@ app.get("/makedonija", async (req, res) => {
     moment,
     title: "Makedonija",
     subpath: "makedonija",
-    timelapseint
+    timelapseint,
   });
 });
 
 app.get("/politika/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
   let title = req.params.countrytitle;
@@ -173,13 +174,13 @@ app.get("/politika/:countrypath/:countrytitle", async (req, res) => {
     await setAsync("politika", 1800, JSON.stringify(articles));
   }
 
-  res.render("politika", { articles, moment, title, subpath,timelapseint });
+  res.render("politika", { articles, moment, title, subpath, timelapseint });
 });
 
 app.get("/aktuelno/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
   let title = req.params.countrytitle;
@@ -191,13 +192,13 @@ app.get("/aktuelno/:countrypath/:countrytitle", async (req, res) => {
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
     await setAsync("aktuelno", 1800, JSON.stringify(articles));
   }
-  res.render("aktuelno", { articles, moment, title, subpath,timelapseint });
+  res.render("aktuelno", { articles, moment, title, subpath, timelapseint });
 });
 
 app.get("/drustvo/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
   let title = req.params.countrytitle;
@@ -210,13 +211,13 @@ app.get("/drustvo/:countrypath/:countrytitle", async (req, res) => {
     await setAsync("drustvo", 1800, JSON.stringify(articles));
   }
 
-  res.render("drustvo", { articles, moment, title, subpath,timelapseint });
+  res.render("drustvo", { articles, moment, title, subpath, timelapseint });
 });
 
 app.get("/kultura/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
   let title = req.params.countrytitle;
@@ -229,13 +230,13 @@ app.get("/kultura/:countrypath/:countrytitle", async (req, res) => {
     await setAsync("kultura", 1800, JSON.stringify(articles));
   }
 
-  res.render("kultura", { articles, moment, title, subpath,timelapseint });
+  res.render("kultura", { articles, moment, title, subpath, timelapseint });
 });
 
 app.get("/sport/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
   let title = req.params.countrytitle;
@@ -248,13 +249,13 @@ app.get("/sport/:countrypath/:countrytitle", async (req, res) => {
     await setAsync("sport", 1800, JSON.stringify(articles));
   }
 
-  res.render("sport", { articles, moment, title, subpath,timelapseint });
+  res.render("sport", { articles, moment, title, subpath, timelapseint });
 });
 
 app.get("/zabava/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
   let title = req.params.countrytitle;
@@ -267,19 +268,19 @@ app.get("/zabava/:countrypath/:countrytitle", async (req, res) => {
     await setAsync("zabava", 1800, JSON.stringify(articles));
   }
 
-  res.render("zabava", { articles, moment, title, subpath,timelapseint });
+  res.render("zabava", { articles, moment, title, subpath, timelapseint });
 });
 
 app.get("/selected/", async (req, res) => {
   let linkPath = req.query.articleLink;
-  console.log("putanja je ", linkPath)
+  console.log("putanja je ", linkPath);
   res.render("selected", { linkPath, title: "Selected" });
 });
 
-app.get("/dodatno", async (req, res)=>{
-  console.log("dodatno je aktivno")
+app.get("/dodatno", async (req, res) => {
+  console.log("dodatno je aktivno");
   res.render("dodatno", { title: "Dodatno" });
-})
+});
 // app.post("/showarticle", (req, res) => {
 //   const data = req.body;
 
@@ -294,26 +295,33 @@ app.get("/dodatno", async (req, res)=>{
 //   };
 //   res.render("showarticle", { article, moment, title: "Pregled vesti" });
 // });
-app.get("/portali", async (req, res)=>{
+app.get("/portali", async (req, res) => {
   let portals = await portali();
   res.render("portali", { title: "Medijski portali koje vi birate", portals });
-})
-app.get("/portal/:portName", async (req, res)=>{
+});
+app.get("/portal/:portName", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if(timelapseint=="undefined"){
-    timelapseint=604800000;
+  if (timelapseint == "undefined") {
+    timelapseint = 604800000;
   }
-  let portName=req.params.portName;
+  let portName = req.params.portName;
   allArticles = await source();
-  let articles = []
-    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-    for(let i=0;i<allArticles.length;i++){
-     if (allArticles[i].source==portName){
-articles.push(allArticles[i]);
-     }
+  let articles = [];
+  articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+  for (let i = 0; i < allArticles.length; i++) {
+    if (allArticles[i].source == portName) {
+      articles.push(allArticles[i]);
     }
-    return res.render("index", { articles, moment, title: portName, timelapseint });
-})
+  }
+  //console.log("izdvajamo", articles)
+  return res.render("index", {
+    articles,
+    moment,
+    title: portName,
+    timelapseint,
+  });
+});
+
 app.post("/showarticle", async (req, res) => {
   const data = req.body;
   let article = {
@@ -324,11 +332,11 @@ app.post("/showarticle", async (req, res) => {
     source: data.source,
     image: data.image,
   };
-  
+
   var myJSON = JSON.stringify(article);
   res.cookie("context", myJSON);
   //console.log(article)
-  
+
   //res.render("preview", { article, moment, title: "Pregled vesti" });
   // try{
   //   const feedLink = await parser.parseURL( req.query.articleLink);
@@ -336,7 +344,7 @@ app.post("/showarticle", async (req, res) => {
   // }catch (e) {
   //   console.error("ERROR IS",e);
   // }
-  console.log("cookie set")
+  console.log("cookie set");
   //res.cookie('cookie', 'monster');
   //res.send({ redirectTo: '/checking' })
   res.redirect("/checking");
@@ -346,10 +354,10 @@ app.get("/checking", async (req, res) => {
   //console.log(req.cookies['context'])
   //console.log("sta god.")
   const articleJson = await req.cookies["balkannewssavedarticles"];
-  let article = JSON.parse(articleJson)
- // let linkPath=article.link;
- // res.clearCookie("context");
-  console.log("sta god.",article);
+  let article = JSON.parse(articleJson);
+  // let linkPath=article.link;
+  // res.clearCookie("context");
+  console.log("sta god.", article);
   //res.status(404).render("404", { title: "404" });
   // res.status(200).render("selected", { linkPath, title: "Selected" }, function (err, html) {
   // ...
@@ -367,6 +375,9 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
     image: req.query.artImage,
   };
   saveAsRead(article);
+  console.log("article.logo is line 377 ",req.params )
+  console.log("article.logo is line 378 ",req.query )
+  console.log("article.logo is line 379 ",article )
   res.render("preview", { article, moment, title: "Pregled vesti" });
   // const articleJson = await req.cookies["context"];
   // let article = JSON.parse(articleJson)
@@ -375,17 +386,21 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
   // res.render("selected", { linkPath : "https://www.codota.com/code/javascript/functions/express/Response/render", title: "Selected" });
 });
 
-function saveAsRead(article){
+function saveAsRead(article) {
   let date = new Date();
   let time = date.getTime();
-  let week = time-604800000;
-  database.remove({timeOfSaving:  { $lt: week }  }, { multi: true }, function (err, numRemoved) {
-    console.log("Number of old articles removed ",numRemoved)
-  });
+  let week = time - 604800000;
+  database.remove(
+    { timeOfSaving: { $lt: week } },
+    { multi: true },
+    function (err, numRemoved) {
+      console.log("Number of old articles removed ", numRemoved);
+    }
+  );
   database.find({ link: article.link }, (err, result) => {
-    console.log("result is",result.length)    
-    if(result.length==0){    
-      let data={
+    console.log("result is", result.length);
+    if (result.length == 0) {
+      let data = {
         title: article.title,
         content: article.content,
         source: article.source,
@@ -393,26 +408,24 @@ function saveAsRead(article){
         logo: article.logo,
         image: article.image,
         numberOfVisits: 1,
-        timeOfSaving: time
-      }
+        date: time,
+      };
       database.insert(data);
-    }else{
-     console.log("this is else")
-    // let allAnswers = result[0].answers;
-   // let linkedArticle = result[0];
-    let newNumberOfVisits= result[0].numberOfVisits+1;
-    // allAnswers.push(newAnswer);
-     database.update(
-      { _id: result[0]._id },
-      { $set: { numberOfVisits: newNumberOfVisits } },
-      { multi: true },
-      function (err, numReplaced) {}
-     );
-     }   
-  }); 
+    } else {
+      console.log("this is else");
+      // let allAnswers = result[0].answers;
+      // let linkedArticle = result[0];
+      let newNumberOfVisits = result[0].numberOfVisits + 1;
+      // allAnswers.push(newAnswer);
+      database.update(
+        { _id: result[0]._id },
+        { $set: { numberOfVisits: newNumberOfVisits } },
+        { multi: true },
+        function (err, numReplaced) {}
+      );
+    }
+  });
 }
-
-
 
 app.post("/savearticle", async (req, res) => {
   const data = req.body;
@@ -423,55 +436,51 @@ app.post("/savearticle", async (req, res) => {
     // logo: data.logo,
     // source: data.source,
     // image: data.image,
-  }; 
-  let articles=[];
-  
+  };
+  let articles = [];
+
   let cookie = await req.cookies["balkannewssavedarticles"];
-  console.log("cookie is ", cookie)
-//res.clearCookie("balkannewssavedarticles");
- if (cookie!==undefined&&cookie.includes(article.link)!==true){
-      articles=JSON.parse(cookie);
-articles.push(article);
-      console.log("artikles are",articles)
-      let myJSON = JSON.stringify(articles);
-  res.cookie("balkannewssavedarticles", myJSON);
-    res.send('');
-    }else{
-      articles.push(article);
-      console.log("artikles are",articles)
-      let myJSON = JSON.stringify(articles);
-  res.cookie("balkannewssavedarticles", myJSON);
-    res.send('');
-      console.log("this is else if as. article already exist")
-    }  
+  console.log("cookie is ", cookie);
+  //res.clearCookie("balkannewssavedarticles");
+  if (cookie !== undefined && cookie.includes(article.link) !== true) {
+    articles = JSON.parse(cookie);
+    articles.push(article);
+    console.log("artikles are", articles);
+    let myJSON = JSON.stringify(articles);
+    res.cookie("balkannewssavedarticles", myJSON);
+    res.send("");
+  } else {
+    articles.push(article);
+    console.log("artikles are", articles);
+    let myJSON = JSON.stringify(articles);
+    res.cookie("balkannewssavedarticles", myJSON);
+    res.send("");
+    console.log("this is else if as. article already exist");
+  }
   // res.redirect("/checking");
   // var myJSON = JSON.stringify(article);
   //
   // res.cookie("balkannewssavedarticles12345", "isthisforreal4");
   //var myJSON = JSON.stringify(article);
- // res.cookie("context", myJSON, { httpOnly: true });
+  // res.cookie("context", myJSON, { httpOnly: true });
 });
 
+app.get("/sacuvane-vesti", async (req, res) => {
+  let articles = null;
+  let cookie = await req.cookies["balkannewssavedarticles"];
+  articles = JSON.parse(cookie);
+  //   // if ((await existsAsync("articles")) === 1) {
+  //   //   console.log("redis smeta")
+  //   //   articles = JSON.parse(await getAsync("articles"));
+  //   // } else {
 
-
- app.get("/sacuvane-vesti", async (req, res) => {
-
-
-   let articles = null;
-   let cookie = await req.cookies["balkannewssavedarticles"];
-    articles = JSON.parse(cookie);
-//   // if ((await existsAsync("articles")) === 1) {
-//   //   console.log("redis smeta")
-//   //   articles = JSON.parse(await getAsync("articles"));
-//   // } else {
-    
-//     // articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-//     await setAsync("articles", 1800, JSON.stringify(articles));
-//   // }
+  //     // articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+  //     await setAsync("articles", 1800, JSON.stringify(articles));
+  //   // }
   res.render("sacuvane-vesti", {
     articles,
     moment,
-    title: "Pregled sacuvanih vesti",
+    title: "Pregled sačuvanih vesti",
   });
 });
 
@@ -479,43 +488,52 @@ app.get("/period", async (req, res) => {
   res.render("period", { moment, title: "Vremenski period" });
 });
 
-app.get("/period168", async (req, res) => { 
-  let timelapseint=604800000
+app.get("/period168", async (req, res) => {
+  let timelapseint = 604800000;
   res.cookie("timelapseint", timelapseint);
   res.redirect("/");
 });
 app.get("/period72", async (req, res) => {
-  let timelapseint=259200000;
+  let timelapseint = 259200000;
   res.cookie("timelapseint", timelapseint);
   res.redirect("/");
 });
 app.get("/period24", async (req, res) => {
-  let timelapseint=86400000;
+  let timelapseint = 86400000;
   res.cookie("timelapseint", timelapseint);
   res.redirect("/");
 });
 app.get("/period12", async (req, res) => {
-  let timelapseint=43200000;
+  let timelapseint = 43200000;
   res.cookie("timelapseint", timelapseint);
   res.redirect("/");
 });
 
-
 app.get("/najcitanije", async (req, res) => {
-  console.log("ovo je najcitanije")
-  //let subpath = req.params.countrypath;
-  //let title = req.params.countrytitle;
-  // let articles = null;
-    database.find({ }, (err, result) => {
+  timelapseint = 604800000;
+
+  console.log("ovo je najcitanije");
+  database.find({}, (err, result) => {
     let articles = result;
-    console.log("najcitaniji su",articles.length);
-    articles.sort(function(a, b){return b.numberOfVisits-a.numberOfVisits});
+
+    articles.sort(function (a, b) {
+      return b.numberOfVisits - a.numberOfVisits;
+    });
     //articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-    setAsync("articles", 1800, JSON.stringify(articles));
-      res.render("najcitanije", { articles, moment, title : "Najcitanije vesti u regionu" });
+    //setAsync("articles", 1800, JSON.stringify(articles));
+    console.log("najcitanije su", articles.length);
+    res.render("najcitanije", {
+      articles,
+      moment,
+      title: "Najčitanije vesti u regionu",
+      timelapseint,
+    });
   });
 });
 app.get("/search", async (req, res) => {
+ 
+    timelapseint = 604800000;
+  
   const { term } = req.query;
   console.log(term);
   let articles = [];
@@ -523,16 +541,15 @@ app.get("/search", async (req, res) => {
   allArticles.forEach((article) => {
     if (
       article.title.toLowerCase().includes(term.toLowerCase()) == true ||
-      article.content.toLowerCase().includes(term.toLowerCase()) == true ||
+      //article.content.toLowerCase().includes(term.toLowerCase()) == true ||
       article.source.toLowerCase().includes(term.toLowerCase()) == true
     ) {
       articles.push(article);
     }
   });
   console.log(articles[1]);
-  res.render("searched", { articles, moment, title: "Rezultat pretrage" });
+  res.render("searched", { articles, moment, title: "Rezultat pretrage",timelapseint });
 });
-
 
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
@@ -541,4 +558,4 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`App is listening on ${PORT}`);
 });
-// app.listen(process.env.PORT || 3000);
+
