@@ -44,9 +44,11 @@ app.use(cookieParser());
 
 app.get("/", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
   }
+ 
   let articles = null;
   if ((await existsAsync("articles")) === 1) {
     articles = JSON.parse(await getAsync("articles"));
@@ -60,7 +62,21 @@ app.get("/", async (req, res) => {
   // console.log("category is", article.category)});
   return res.render("index", { articles, moment, title: "Home", timelapseint });
 });
-
+// app.get("/", async (req, res) => {
+//   let timelapseint = await req.cookies["timelapseint"];
+//   if (!timelapseint) {
+//    timelapseint = 604800000;
+//  }
+//   let articles = await source();
+//   articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+//   await setAsync("articles", 1800, JSON.stringify(articles));
+//   return res.render("index", {
+//     articles,
+//     moment,
+//     title: "Home",
+//     timelapseint,
+//   });
+// });
 app.get("/najnovije", async (req, res) => {
   let articles = await source();
   articles.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -75,7 +91,7 @@ app.get("/najnovije", async (req, res) => {
 
 app.get("/srbija", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let articles = null;
@@ -97,7 +113,7 @@ app.get("/srbija", async (req, res) => {
 
 app.get("/crna-gora", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let articles = null;
@@ -113,7 +129,8 @@ app.get("/crna-gora", async (req, res) => {
 
 app.get("/bosna-i-hercegovina", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
+    console.log("this is timelapseint",timelapseint)
     timelapseint = 604800000;
   }
   let articles = null;
@@ -121,7 +138,7 @@ app.get("/bosna-i-hercegovina", async (req, res) => {
   res.render("bosna-i-hercegovina", {
     articles,
     moment,
-    title: "Bosna i Hercegovina",
+    title: "BiH",
     subpath: "bosna-i-hercegovina",
     timelapseint,
   });
@@ -129,7 +146,7 @@ app.get("/bosna-i-hercegovina", async (req, res) => {
 
 app.get("/hrvatska", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let articles = null;
@@ -144,7 +161,7 @@ app.get("/hrvatska", async (req, res) => {
 });
 app.get("/makedonija", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let articles = null;
@@ -160,7 +177,7 @@ app.get("/makedonija", async (req, res) => {
 
 app.get("/politika/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
@@ -179,7 +196,7 @@ app.get("/politika/:countrypath/:countrytitle", async (req, res) => {
 
 app.get("/aktuelno/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
@@ -197,7 +214,7 @@ app.get("/aktuelno/:countrypath/:countrytitle", async (req, res) => {
 
 app.get("/drustvo/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
@@ -216,7 +233,7 @@ app.get("/drustvo/:countrypath/:countrytitle", async (req, res) => {
 
 app.get("/kultura/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
@@ -235,7 +252,7 @@ app.get("/kultura/:countrypath/:countrytitle", async (req, res) => {
 
 app.get("/sport/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
@@ -254,7 +271,7 @@ app.get("/sport/:countrypath/:countrytitle", async (req, res) => {
 
 app.get("/zabava/:countrypath/:countrytitle", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let subpath = req.params.countrypath;
@@ -301,7 +318,7 @@ app.get("/portali", async (req, res) => {
 });
 app.get("/portal/:portName", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
-  if (timelapseint == "undefined") {
+  if (!timelapseint||timelapseint=="undefined") {
     timelapseint = 604800000;
   }
   let portName = req.params.portName;

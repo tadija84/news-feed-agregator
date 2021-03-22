@@ -11,4 +11,25 @@
         <input type="search" placeholder="search for the term" name="term">
         <input type="submit" value="Search">
     </form>
+    <div class="menu-button">
+        <div class="menu-button__burger"></div>
+    </div>
+
+            
+    <script>
+        const menuBtn = document.querySelector(".menu-button");
+        const hamburger = document.querySelector(".menu-button__burger");
+        // let tabLink = document.querySelectorAll(".nav-tab");
+        menuBtn.addEventListener("click", toggleMenu);
+
+        function toggleMenu() {
+            hamburger.classList.toggle("open");
+            //   let element = document.getElementById("nav-list");
+           // element.classList.toggle("open");
+            // for (let i = 0; i < tabLink.length; ++i) {
+            //     tabLink[i].classList.toggle("open");
+            // }
+        }
+
+    </script>
 </div>

@@ -32,9 +32,9 @@
 
                                 <div class="media-content">
                                     <p class="title is-4"><%= article.title %></p>
-                                    <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-                                        <%= article.source %></p>
-                                        <!-- <div class="article-source-logo"  style="background-image: url(../public/images/logoi-portala/<%=`${article.logo}`%>)"></div> -->
+                                    <!-- <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                                        <%= article.source %></p> -->
+                                    <!-- <div class="article-source-logo"  style="background-image: url(../public/images/logoi-portala/<%=`${article.logo}`%>)"></div> -->
  
                                     <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px"
                                         style="background-color: red;"> -->
@@ -42,7 +42,7 @@
                             </div>
                             <div class="media-source">
                                 <!-- <div class="article-source-logo" style="background-image: url(../images/no-image.jpg);border: solid black 1px"></div> -->
-                                <div class="article-source-logo-prev" style="background-image: url(./images/no-image.jpg);border: solid black 1px"></div>
+                                <div class="article-source-logo-prev"  style="background-image: url(../../../images/logoi-portala/<%=`${article.logo}`%>)"></div>
                                 <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;"> -->
                                 <time class="day-n-time"
                                     datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
