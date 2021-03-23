@@ -5,27 +5,24 @@
 <body>
 
     <%- include('./partials/header.ejs')%>
-    <div class="navigation-bars">
-        <%- include('./partials/main-navigation.ejs')%>
-    </div>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
-                <div class="column is-half is-offset-one-quarter">
+                <div class="naslov-terminusa">
+                    <p>Izaberite terminus vesti</p>
                 </div>
-                <div>
+                <div class="time-container">
                     <ul class="time-options">
-                        <li class="time-tab"><a href="/period12"> 12h</a></li>
-                        <li class="time-tab"><a href="/period24"> 24h</a></li>
-                        <li class="time-tab"><a href="/period72"> 72h</a></li>
-                        <li class="time-tab"><a href="/period168"> 7dana</a></li>
+                        <li class="time-tab"><a class="time-tab-link" href="/period12"> 12h</a></li>
+                        <li class="time-tab"><a class="time-tab-link" href="/period24"> 24h</a></li>
+                        <li class="time-tab"><a class="time-tab-link" href="/period72"> 72h</a></li>
+                        <li class="time-tab"><a class="time-tab-link" href="/period168"> 7dana</a></li>
                     </ul>
                 </div>
                
             </div>
         </div>
     </section>
-    <%- include('./partials/footer.ejs')%>
 </body>
 
 </html>

@@ -11,9 +11,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
     <%- include('./partials/header.ejs')%>
-    <div class="navigation-bars">
-        <%- include('./partials/main-navigation.ejs')%>
-    </div>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
@@ -85,7 +82,6 @@
             </div>
         </div>
     </section>
-    <%- include('./partials/footer.ejs')%>
 
     <script>
         async function saveArticle(title, content, source, link, logo, image) {

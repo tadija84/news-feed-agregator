@@ -5,9 +5,6 @@
 
 <body>
     <%- include('./partials/header.ejs')%>
-    <div class="navigation-bars">
-        <%- include('./partials/main-navigation.ejs')%>
-    </div>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
@@ -16,9 +13,10 @@
                     <div class="card-content">
                         <div class="picture-container">
                         <a href="/portal/<%=`${portal.name}`%>">
-                            <img class="portal-picture" src="<%=`${portal.logo}`%>" alt="portal logo">
+                            <img class="portal-picture" src="../../../images/logoi-portala/<%=`${portal.logo}`%>" alt="portal logo">
                           </a>
                         </div>
+                        <!-- <div class="article-source-logo-prev"  style="background-image: url(../../../images/logoi-portala/<%=`${portal.logo}`%>)"></div> -->
                         <!-- <div class="portal-picture" style="background-image: url(<%=`${portal.logo}`%>)"></div> -->
                         <div class="portal-name"><a class="potal-name-link"
                                 href="/portal/<%=`${portal.name}`%>"><%=portal.name%></a> </div>
@@ -28,7 +26,6 @@
             </div>
         </div>
     </section>
-    <%- include('./partials/footer.ejs')%>
 </body>
 
 </html>

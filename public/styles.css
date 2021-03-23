@@ -2,11 +2,12 @@
   box-sizing: border-box;
 }
 body{
-  min-height: 100vh;
+  min-height: 130vh;
 }
 .hero_head {
   height: 120px;
-  padding-left: 1.5rem;
+  z-index: 2;
+  position: relative;
   /* background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -14,6 +15,8 @@ body{
 }
 .titles-n-subtitles {
   height: 100%;
+  
+  padding-left: 1.5rem;
 }
 .logo-link-text{
   height: 60%;
@@ -55,8 +58,8 @@ body{
 .main-nav-list {
 }
 .accordion{
-  z-index: 4;
-  width: 100%;
+ 
+  display: block;
 }
 .glavna-link{
   width: 10%;
@@ -67,19 +70,18 @@ body{
   text-align: center;
   padding: 0;
   margin: 0;
+  display: block;
   
-  height: 50px;
 }
 .link-con{
   display: block;
-  width: 100%;
   color: white;
   font-weight: 500;
   padding-top: 10px;
   padding-bottom: 15px;
   margin: 0;
   background-color: #007aff;
-  
+  cursor:pointer;
   height: 50px;
 }
 .glavna-con{
@@ -112,28 +114,22 @@ body{
   top: 5vh;
   background-color: #333;
 }
+.sub-menu{
+  display: none;
+ 
+}
 .sub-nav-tab{
+  position: relative;
   width: 100%;
   padding-top: 10px;
- 
+ background-color: #333;
   text-align: center;
 }
-.ui-widget-content a{
-  color: white !important;
-}
+
 .sub-nav-tab>a{
    color: white;
 }
-.ui-accordion-content{
-  background-color: #333 !important;
-  width: 100% !important;
-  padding: 0!important;
-  min-height: 240px !important;
-}
 
-.ui-accordion-content ul{
-  width: 100% !important;
-}
 .country-name>a{
   font-weight: 800;
 }
@@ -251,7 +247,6 @@ width: 100%;
   margin-left: 10px;
 }
 .article-source-logo-prev{
-  /* background-image: url(../images/share_purple_512_normal.png); */
   width:50px;
   height: 20px;
   background-position: center;
@@ -294,17 +289,48 @@ width: 100%;
   color: white;
   padding: 5px 0;
 }
-.time-options {
+.naslov-terminusa{
+  font-size: 3em;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  color: #007aff;
+  margin-top: 5vh;
+}
+.time-container{
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  border: solid yellowgreen 1px;
+  justify-content: space-evenly;
+}
+
+.time-options {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10vh auto;
 }
 .time-tab {
   width: 10vw;
+  height: 10vw;
+  
+  
 }
-.time-tab:hover {
-  border-bottom: solid yellowgreen 3px;
+.time-tab-link{
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid #333 3px;
+  color: #333;
+  border-radius: 50%;
+} 
+.time-tab-link:hover {
+  border: solid #007aff 3px;
+  color: #007aff;
 }
 .soc-nets {
   width: 80%;
@@ -329,8 +355,9 @@ width: 100%;
   align-items: center;
 }
 .portal-picture{
-  max-width: 25vw;
-  max-height: 30vh;
+  max-width: 90%;
+  max-height: 80%;
+  padding: 10%;
   /* background-color: lightgrey; */
   /* background-repeat: no-repeat;
   background-size: contain;
@@ -345,6 +372,20 @@ justify-content: center;
   font-size: 1.5em;
   font-weight: 600;
   color: #007aff;
+}
+.wrong-page{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 10vh auto;
+  justify-content: space-evenly;
+  align-items:center;
+}
+.wrong-page h2{
+  margin-bottom: 10vh;
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
 }
 
 
@@ -363,6 +404,20 @@ justify-content: center;
   }
 } */
 @media screen and (max-width: 950px) {
+  .invisible{
+    display: none;
+  }
+  .main-nav-list{
+    display: block;
+  }
+  .glavna-link,
+  .tab-link{
+    width: 100%;
+  }
+  .glavna-con{
+    text-align: center;
+    padding-left: 0;
+  }
 .menu-button {
    display: block;
   }
