@@ -10,7 +10,10 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    <%- include('./partials/header.ejs')%>
+     <% if (subpath=='makedonija') { %>
+        <%- include('./partials/macedonian-header.ejs')%>
+        <% }else{ %>
+            <% }; %>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">

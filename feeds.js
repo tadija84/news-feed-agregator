@@ -414,5 +414,44 @@ const telegraf = {
    putovanja: ['https://www.telegraf.rs/rss/putovanja'],
    drzava: ['srbija']
 };
+const makedonskiVesnik = {
+    logoURL: '',
+  
+   name: 'Македонски весник',
+   links: [
+       'https://makedonskivesnik.com/feed/'
+      
+   ],
+   politika: ['https://makedonskivesnik.com/category/politika/feed/'],
+   drustvo: [],
+   hronika: [],
+   vesti: [ ],
+   kultura: [],
+   zanimljivosti: [],
+   sport: ['https://makedonskivesnik.com/category/sport/feed/'],
+   ljubimci: [],
+   putovanja: [],
+   drzava: ['makedonija']
+};
+const makedonskiKurir = {
+    logoURL: '',
+  
+   name: 'Курир.mk',
+   links: [
+       'https://kurir.mk/feed/'
+      
+   ],
+   politika: [],
+   drustvo: ['https://kurir.mk/category/republika/feed/'],
+   hronika: ['https://kurir.mk/category/makedonija/hronika/feed/'],
+   vesti: ['https://kurir.mk/category/makedonija/vesti/feed/'],
+   kultura: ['https://kurir.mk/category/scena/feed/','https://kurir.mk/category/makedonija/kultura/feed/'],
+   zanimljivosti: ['https://kurir.mk/category/magazin/feed/','https://kurir.mk/category/magazin/zanimlivosti/feed/'],
+   sport: ['https://kurir.mk/category/sport/feed/'],
+   ljubimci: [],
+   putovanja: [],
+   drzava: ['makedonija']
+};
+
 //vratiti politiku, nesto nece da radi kako valja
-module.exports = [telegraf,kurir, novaS, srbijaDanas, nedeljnik,pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
+module.exports = [makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, nedeljnik,pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];

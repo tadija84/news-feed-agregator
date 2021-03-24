@@ -3,10 +3,10 @@
 <%- include('./partials/head.ejs')%>
 
 <body>
-  <%- include('./partials/header.ejs')%>
-  <div class="navigation-bars">
-    <%- include('./partials/main-navigation.ejs')%>
-    <%- include('./partials/sub-header.ejs')%>
+  <% if (subpath=='makedonija') { %>
+    <%- include('./partials/macedonian-header.ejs')%>
+    <% }else{ %>
+        <% }; %>
 </div>
   <section class="section">
     <div class="container is-fluid">

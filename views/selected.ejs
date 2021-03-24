@@ -3,17 +3,15 @@
 
 <%- include('./partials/head.ejs')%>
 
-<body>
-    <%- include('./partials/header.ejs')%>
-    <div class="navigation-bars">
-        <%- include('./partials/main-navigation.ejs')%>
-    </div>
+<body>    <% if (subpath=='makedonija') { %>
+    <%- include('./partials/macedonian-header.ejs')%>
+    <% }else{ %>
+        <% }; %>
     <section class="section"> 
         <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
         <iframe src="<%= linkPath %>" title="test test test" class="selected_art"></iframe>
 
     </section>
-    <%- include('./partials/footer.ejs')%>
 
     <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 </body>

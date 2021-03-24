@@ -4,10 +4,10 @@
 
 <body>
 
-    <%- include('./partials/header.ejs')%>
-    <div class="navigation-bars">
-        <%- include('./partials/main-navigation.ejs')%>
-    </div>
+    <% if (subpath=='makedonija') { %>
+        <%- include('./partials/macedonian-header.ejs')%>
+        <% }else{ %>
+            <% }; %>
     <p>Sačuvane vesti:</p>
     <section class="section">
         <div class="container is-fluid">
@@ -21,7 +21,6 @@
             </div>
         </div>
     </section>
-    <%- include('./partials/footer.ejs')%>
 </body>
 
 </html>

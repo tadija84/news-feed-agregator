@@ -3,8 +3,11 @@
 
 <%- include('./partials/head.ejs')%>
 
-<body>
-    <%- include('./partials/header.ejs')%>
+<body>    
+    <% if (subpath=='makedonija') { %>
+    <%- include('./partials/macedonian-header.ejs')%>
+    <% }else{ %>
+        <% }; %>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
