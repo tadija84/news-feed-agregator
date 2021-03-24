@@ -407,7 +407,7 @@ const telegraf = {
    drustvo: [],
    hronika: [],
    vesti: [ 'https://www.telegraf.rs/rss/vesti'],
-   kultura: ['https://www.telegraf.rs/rss/pop-i-kultura'],
+ kultura: ['https://www.telegraf.rs/rss/pop-i-kultura'],
    zanimljivosti: ['https://www.telegraf.rs/rss/zanimljivosti'],
    sport: ['https://www.telegraf.rs/rss/sport'],
    ljubimci: [],
@@ -445,13 +445,50 @@ const makedonskiKurir = {
    drustvo: ['https://kurir.mk/category/republika/feed/'],
    hronika: ['https://kurir.mk/category/makedonija/hronika/feed/'],
    vesti: ['https://kurir.mk/category/makedonija/vesti/feed/'],
-   kultura: ['https://kurir.mk/category/scena/feed/','https://kurir.mk/category/makedonija/kultura/feed/'],
+ kultura: ['https://kurir.mk/category/scena/feed/','https://kurir.mk/category/makedonija/kultura/feed/'],
    zanimljivosti: ['https://kurir.mk/category/magazin/feed/','https://kurir.mk/category/magazin/zanimlivosti/feed/'],
    sport: ['https://kurir.mk/category/sport/feed/'],
    ljubimci: [],
    putovanja: [],
    drzava: ['makedonija']
 };
-
+const fokus = {
+    logoURL: '',
+  
+   name: 'Фокус',
+   links: [
+       'https://fokus.mk/feed/'
+      
+   ],
+   politika: [],
+   drustvo: [],
+   hronika: [],
+   vesti: ['https://fokus.mk/kategorija/aktuelno-2/feed/'],
+   kultura: [],
+   zanimljivosti: ['https://fokus.mk/kategorija/kategorija-life/feed/'],
+   sport: ['https://fokus.mk/kategorija/kategorija-life/sport/feed/'],
+   ljubimci: [],
+   putovanja: [],
+   drzava: ['makedonija']
+};
+const novaMakedonija = {
+    logoURL: '',
+  
+   name: 'Нова Македонија',
+   links: [
+       'https://www.novamakedonija.com.mk/feed/'
+      
+   ],
+   politika: ['https://www.novamakedonija.com.mk/category/makedonija/politika/feed/'],
+   drustvo: [],
+   hronika: ['https://www.novamakedonija.com.mk/category/makedonija/hronika/feed/'],
+   vesti: [],
+   kultura: [],
+   zanimljivosti: ['https://www.novamakedonija.com.mk/category/zivot/feed/','https://www.novamakedonija.com.mk/category/prilozi/feed/'],
+   sport: ['https://www.novamakedonija.com.mk/category/sport/feed/'],
+   ljubimci: [],
+   putovanja: [],
+   drzava: ['makedonija']
+};
 //vratiti politiku, nesto nece da radi kako valja
-module.exports = [makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, nedeljnik,pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
+module.exports = [novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, nedeljnik,pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
