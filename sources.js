@@ -27,7 +27,8 @@ const requestRss = async (urls) => {
     }
     return toReturn;
   } catch (e) {
-    console.error("ERROR IS in sources.js",e);
+    console.error("ERROR IS in sources.js",e,urls);
+    return;
   }
 };
 

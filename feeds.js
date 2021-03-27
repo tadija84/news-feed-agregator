@@ -2,13 +2,7 @@ const direktno = {
     logoURL: 'direktno.jpg',
     name: 'Direktno',
     links: [
-        'https://direktno.rs/rss/vesti.html',
-        'https://direktno.rs/rss/vesti/kultura.html',
-        'https://direktno.rs/rss/politika.html',
-        'https://direktno.rs/rss/vesti/drustvo-i-ekonomija.html',
-        'https://direktno.rs/rss/vesti/hronika.html',
-        'https://direktno.rs/rss/lifestyle.html',
-        'https://direktno.rs/rss/sport.html'
+        'https://direktno.rs/rss/vesti.html'
     ],
     politika: ['https://direktno.rs/rss/politika.html'],
     drustvo: [ 'https://direktno.rs/rss/vesti/drustvo-i-ekonomija.html'],
@@ -25,13 +19,9 @@ const blic = {
     logoURL: 'blic_portal.jpg',
     name: 'Blic',
     links: [
-        'https://www.blic.rs/rss/Vesti/Politika',
+        'https://www.blic.rs/rss/danasnje-vesti',
         'https://www.blic.rs/rss/Vesti/Korona-virus-Srbija',
-        'https://www.blic.rs/rss/Vesti/Drustvo',
-        'https://www.blic.rs/rss/Vesti/Hronika',
-        'https://www.blic.rs/rss/Zabava/Vesti',
-        'https://www.blic.rs/rss/Kultura/Vesti',
-        'https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'
+        'https://www.blic.rs/rss/Zabava/Vesti'
     ],
     politika: ['https://www.blic.rs/rss/Vesti/Politika'],
     drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
@@ -39,7 +29,8 @@ const blic = {
     vesti: [ 'https://www.blic.rs/rss/Vesti'],
     kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
     zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
-    sport: ['https://sport.blic.rs/rss'],
+    // sport: ['https://sport.blic.rs/rss'],
+    sport: [],
     ljubimci: [],
     putovanja: [],
     drzava: ['srbija']
@@ -49,16 +40,12 @@ const oslobodjenje = {
      logoURL: 'oslobodjenje.jpg',
     name: 'Oslobodjenje',
     links: [
-        'https://www.oslobodjenje.ba/feed',
-        'https://www.oslobodjenje.ba/feed/category/1',
-        'https://www.oslobodjenje.ba/feed',
-        'https://www.oslobodjenje.ba/feed/category/2',
-        'https://sport1.oslobodjenje.ba/s1/feed/category/300000'
+        'https://www.oslobodjenje.ba/feed'
     ],
     politika: [],
     drustvo: [],
     hronika: [],
-    vesti: [ 'https://www.oslobodjenje.ba/feed/category/1','https://www.oslobodjenje.ba/feed'],
+    vesti: [ 'https://www.oslobodjenje.ba/feed/category/1'],
     kultura: [ ],
     zanimljivosti: ['https://www.oslobodjenje.ba/feed/category/2'],
    sport: [ 'https://sport1.oslobodjenje.ba/s1/feed/category/300000'],
@@ -73,13 +60,9 @@ const danas = {
     name: 'Danas',
     links: [
         'https://www.danas.rs/feed/',
-        'https://www.danas.rs/rubrika/drustvo/feed',
-        'https://www.danas.rs/rubrika/politika/feed',
         'https://www.danas.rs/rubrika/dijalog/feed',
         'https://www.danas.rs/rubrika/ekonomija/feed',
         'https://www.danas.rs/rubrika/svet/feed',
-        'https://www.danas.rs/rubrika/sport/feed',
-        'https://www.danas.rs/rubrika/kultura/feed'
     ],
     politika: ['https://www.danas.rs/rubrika/politika/feed'],
     drustvo: [ 'https://www.danas.rs/rubrika/drustvo/feed'],
@@ -91,33 +74,6 @@ const danas = {
     ljubimci: [],
     putovanja: [],
     drzava: ['srbija']
-};
-
-const scoop = {
-    logoURL: 'https://ocdn.eu/ucs/static/blicperun/17ca6f8b609590c5411ff29c7f83fad3/img/logo_x2.png',
-   
-    name: 'Scoop',
-    links: [
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=BU',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=SC',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=PA',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=PO',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=AK',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=WO',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=CU',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=ED',
-        'http://www.scoop.co.nz/storyindex/index.rss?s.c=GE'
-    ],
-    politika: ['https://www.blic.rs/rss/Vesti/Politika'],
-    drustvo: [ 'https://www.blic.rs/rss/Vesti/Drustvo'],
-    hronika: [ 'https://www.blic.rs/rss/Vesti/Hronika'],
-    vesti: [ 'https://www.blic.rs/rss/Zabava/Vesti'],
-    kultura: [ 'https://www.blic.rs/rss/Kultura/Vesti'],
-    zanimljivosti: ['https://www.blic.rs/rss/Slobodno-vreme/Zanimljivosti'],
-    sport: [],
-    ljubimci: [],
-    putovanja: [],
-    drzava: ['hrvatska']
 };
 
 const politika= {
@@ -143,11 +99,7 @@ const dnevniAvaz= {
    
     name: 'Dnevni Avaz',
     links: [
-        'https://avaz.ba/rss',
-        'https://avaz.ba/rss/crna-hronika',
-        'https://avaz.ba/rss/vijesti',
-        'https://avaz.ba/rss/zabava',
-        'https://avaz.ba/rss/sport'
+        'https://avaz.ba/rss'
     ],
     politika: [],
     drustvo: [],
@@ -186,14 +138,6 @@ const slobodnaDalmacija = {
     name: 'Slobodna Dalmacija',
     links: [
         'https://slobodnadalmacija.hr/feed',
-        'https://slobodnadalmacija.hr/feed/category/119',
-        'https://slobodnadalmacija.hr/feed/category/241',
-        'https://slobodnadalmacija.hr/feed/category/242',
-        'https://slobodnadalmacija.hr/feed/category/244',
-        'https://slobodnadalmacija.hr/feed/category/245',
-        'https://slobodnadalmacija.hr/feed/category/268',
-        'https://slobodnadalmacija.hr/feed/category/269',
-        'https://slobodnadalmacija.hr/feed/category/255'
     ],
     politika: ['https://slobodnadalmacija.hr/vijesti/politika/feed'],
     drustvo: [],
@@ -230,14 +174,7 @@ const republika = {
    links: [
        'https://www.republika.rs/rss/najnovije-vesti',
        'https://www.republika.rs/rss/vesti',
-       'https://www.republika.rs/rss/vesti/tema-dana',
-       'https://www.republika.rs/rss/hronika/hronika',
-       'https://www.republika.rs/rss/sport',
-       'https://www.republika.rs/rss/zabava',
-       'https://www.republika.rs/rss/lifestyle',
-       'https://www.danas.rs/rubrika/kultura/feed',
-       'https://www.republika.rs/rss/razonoda',
-       'https://www.republika.rs/rss/zabava/kultura'
+       'https://www.republika.rs/rss/vesti/tema-dana'
    ],
    politika: [],
    drustvo: [ 'https://www.republika.rs/rss/vesti/drustvo'],
@@ -274,12 +211,6 @@ const pinkRs = {
    name: 'Pink.rs',
    links: [
        'https://pink.rs/feed/vesti',
-       'https://pink.rs/feed/politika',
-       'https://pink.rs/feed/drustvo',
-       'https://pink.rs/feed/hronika',
-       'https://pink.rs/feed/sport',
-       'https://pink.rs/feed/zivotinje',
-       'https://pink.rs/feed/pop-kultura'
    ],
    politika: ['https://pink.rs/feed/politika'],
    drustvo: [ 'https://pink.rs/feed/drustvo'],
@@ -298,12 +229,6 @@ const nedeljnik = {
    name: 'Nedeljnik',
    links: [
        'https://www.nedeljnik.rs/feed/',
-       'https://www.nedeljnik.rs/category/vesti/feed/',
-       'https://www.nedeljnik.rs/category/vesti/politika/feed/',
-       'https://www.nedeljnik.rs/category/vesti/drustvo/feed/',
-       'https://www.nedeljnik.rs/category/vesti/sport/feed/',
-       'https://www.nedeljnik.rs/category/vesti/kultura/feed/',
-       'https://www.nedeljnik.rs/category/magazin/feed/',
        'https://www.nedeljnik.rs/category/velike-price/intervjui/feed/',
        'https://www.nedeljnik.rs/category/kolumne/feed/',
        'https://www.nedeljnik.rs/category/velike-price/reportaze/feed/'
@@ -349,13 +274,7 @@ const novaS = {
   
    name: 'Nova S',
    links: [
-       'https://nova.rs/feed/',
-       'https://nova.rs/category/vesti/politika/feed/',
-       'https://nova.rs/category/vesti/hronika/feed/',
-       'https://nova.rs/category/vesti/drustvo/feed/',
-       'https://nova.rs/category/vesti/sport/feed/',
-       'https://nova.rs/category/vesti/kultura/feed/',
-       'https://nova.rs/category/vesti/zabava/feed/'
+       'https://nova.rs/feed/'
    ],
    politika: ['https://nova.rs/category/vesti/politika/feed/'],
    drustvo: [ 'https://nova.rs/category/vesti/drustvo/feed/'],
@@ -373,12 +292,7 @@ const kurir = {
   
    name: 'Kurir',
    links: [
-       'https://www.kurir.rs/rss/vesti',
-       'https://www.kurir.rs/rss/crna-hronika',
-       'https://www.kurir.rs/rss/sport',
-       'https://www.kurir.rs/rss/vesti/politika',
-       'https://www.kurir.rs/rss/vesti/drustvo',
-       'https://www.kurir.rs/rss/zabava/zanimljivosti'
+       'https://www.kurir.rs/rss/vesti'
    ],
    politika: ['https://www.kurir.rs/rss/vesti/politika'],
    drustvo: [ 'https://www.kurir.rs/rss/vesti/drustvo'],
@@ -396,11 +310,7 @@ const telegraf = {
   
    name: 'Telegraf',
    links: [
-       'https://www.telegraf.rs/rss/vesti',
-       'https://www.telegraf.rs/rss/sport',
-       'https://www.telegraf.rs/rss/pop-i-kultura',
-       'https://www.telegraf.rs/rss/putovanja',
-       'https://www.telegraf.rs/rss/zanimljivosti'
+       'https://www.telegraf.rs/rss/vesti'
       
    ],
    politika: [],
@@ -491,4 +401,4 @@ const novaMakedonija = {
    drzava: ['makedonija']
 };
 //vratiti politiku, nesto nece da radi kako valja
-module.exports = [novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, nedeljnik,pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
+module.exports = [nedeljnik,novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];

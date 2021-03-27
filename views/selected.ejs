@@ -3,10 +3,9 @@
 
 <%- include('./partials/head.ejs')%>
 
-<body>    <% if (subpath=='makedonija') { %>
-    <%- include('./partials/macedonian-header.ejs')%>
-    <% }else{ %>
-        <% }; %>
+<body>    
+        <%- include('./partials/header.ejs')%>
+        
     <section class="section"> 
         <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
         <iframe src="<%= linkPath %>" title="test test test" class="selected_art"></iframe>

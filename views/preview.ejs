@@ -10,11 +10,10 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-     <% if (subpath=='makedonija') { %>
-        <%- include('./partials/macedonian-header.ejs')%>
-        <% }else{ %>
-            <% }; %>
-    <section class="section">
+     
+            <%- include('./partials/header.ejs')%>
+            
+    <section class="section prev-section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
                 <div class="column is-half is-offset-one-quarter">
@@ -49,16 +48,22 @@
                             </div>
                             <div class="content">
                                 <%= article.content %>
-                                <br>
                                 <!-- <time class="has-text-weight-medium"
                                     datetime="<%= article.date %>"><%= moment(article.date).tz('Pacific/Auckland').format('dddd, MMMM Do YYYY, h:mm:ss a'); %></time> -->
                             </div>
-                            <div class="article-link-div">
+                            <div class="buttons-container">
+                                <div class="article-link-div">
                                 <a href="/selected/?articleLink=<%= article.link %> "
                                     class="title is-4 article-link">PROČITAJTE VIŠE</a>
-                            </div>
-
+                                 </div>
+                                <div class="article-link-div">
+                                <button class="title article-link is-4"
+                                onclick="saveArticle( '<%= article.title %>','<%= article.content %>','<%= article.source %>','<%= article.link %>', '<%= article.logo %>','<%= article.image %>')">Sačuvaj
+                                ovaj članak</button>
+                                 </div>
                             
+                            </div>
+                          
                         </div>
                         <div class="soc-nets">
                             <div class="fb-share-button" data-href="<%= article.link %>" data-layout="button_count">
@@ -74,11 +79,7 @@
                                 <img src="http://png-2.findicons.com/files/icons/573/must_have/48/mail.png">
                             </a>
                         </div>
-<div>
-    <button
-    onclick="saveArticle( '<%= article.title %>','<%= article.content %>','<%= article.source %>','<%= article.link %>', '<%= article.logo %>','<%= article.image %>')">Sačuvaj
-    ovaj članak</button>
-</div>
+
                     </div>
                 </div>
 

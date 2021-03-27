@@ -1,56 +1,38 @@
 <div class="news-content"> 
-    <% articles.forEach(function(article) { %>
+    <% articles.forEach(function(article) { %> 
+         <% if (article.image) { %>
         <% let now=new Date()%>
         <% let pubdate=new Date(article.date)%> 
         <% if (now.getTime()-pubdate.getTime()< timelapseint) { %>
-    <div class="card news-item">
-       
-        <div class="card-content">
-            <% if (article.image) { %>
+    <div class="card news-item">     
+        <div class="card-content">         
             <div class="article-picture" style="background-image: url(<%=`${article.image}`%>)">
-            </div>
-            <% }else{ %>
-            <div class="article-picture" style="background-image: url(../images/no-image.jpg)">
-            </div>
-            <% }; %>
-            <div class="media-source">
-                
-                
-                <div class="article-source-logo"  style="background-image: url(./images/logoi-portala/<%=`${article.logo}`%>)"></div>
-                <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;"> -->
-                <time class="day-n-time"
+            </div>         
+            <div class="media-source">   
+             <div class="article-source-logo"  style="background-image: url(./images/logoi-portala/<%=`${article.logo}`%>)"></div>
+               <time class="day-n-time"
                     datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
             </div>
             <div class="media media-data">
                 <div class="media-content">
-                    <!-- <div>
-                    <p>this is image<%= article.image %></p> <br>
-        <%= article.logo %> <br>
-        <%= article.source %> <br>
-        <%= article.title %> <br>
-        <%= article.link %> <br>
-        <%= article.content %>  <br>
-                </div> -->
+                 
                     <a href="/preview/<%=`${article.title}`%>/<%=`${article.content}`%>/<%=`${article.source}`%>?articleLink=<%=article.link%>&sourceLogo=<%=article.logo%>&artImage=<%=article.image%> "
-                        class="title is-4"><%= article.title %></a>
+                        class="art-title"><%= article.title %></a>
                 </div>
                 <div class="content ">
                     <p><%= article.contentToShow %></p>
                 </div>
             </div>
 
-            <!-- <button
-                onclick="showArticle( '<%= article.title %>','<%= article.content %>','<%= article.source %>','<%= article.link %>', '<%= article.logo %>','<%= article.image %>')">click
-                me now</button> -->
 
         </div>
     </div>
+    <% }; %>
     <% }; %>
     <% }); %>
 
     <script>
         async function showArticle(title, content, source, link, logo, image) {
-            console.log("blablablabla")
             let request = {
                 title: title,
                 content: content,
@@ -69,12 +51,6 @@
                 body: data,
             };
             fetch("/showarticle", options);
-
         };
-
-        // async function showThis(){
-        //     console.log('ahahahahah!')
-        //     fetch("/preview")
-        // }
     </script>
 </div>

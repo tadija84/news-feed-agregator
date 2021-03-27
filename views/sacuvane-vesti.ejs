@@ -4,18 +4,19 @@
 
 <body>
 
-    <% if (subpath=='makedonija') { %>
-        <%- include('./partials/macedonian-header.ejs')%>
-        <% }else{ %>
-            <% }; %>
-    <p>Sačuvane vesti:</p>
+            <%- include('./partials/header.ejs')%>
+    <p class="page-subtitle">Sačuvane vesti:</p>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
                 <div class="column is-full">
+                    <% if (articles == null) { %>
+                        <p class="no-saved-articles">Nema sačuvanih članaka</p>
+                        <% }else{ %>
                     <% for (let i=0; i< articles.length; i++){ %>
-                       <p><a href="/selected/?articleLink=<%=articles[i].link%>"><%= i+1+". "+ articles[i].title %></a></p>
-                    <% }; %>
+                        <% console.log("this is else") %>
+                       <p class="saved-articles"><a href="/selected/?articleLink=<%=articles[i].link%>"><%= i+1+". "+ articles[i].title %></a></p>
+                    <% };}; %>
                  
                 </div>
             </div>

@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 
 <%- include('./partials/head.ejs')%>
 
-<body>    
-    <% if (subpath=='makedonija') { %>
-    <%- include('./partials/macedonian-header.ejs')%>
-    <% }else{ %>
-        <%- include('./partials/header.ejs')%>
-        <% }; %>
+<body>
+    <%- include('./partials/header.ejs')%>
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
                 <div class="column is-half is-offset-one-quarter">
-
                 </div>
                 <div class="column is-full">
-                    <%- include('./partials/one-country-articles.ejs')%>
+                    <%- include('./partials/article.ejs')%>
                 </div>
             </div>
         </div>

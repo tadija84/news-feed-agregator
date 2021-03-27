@@ -23,12 +23,6 @@ const PORT = process.env.PORT || 5000;
 const database = new Datastore("database.db");
 database.loadDatabase();
 
-// const Parser = require("rss-parser");
-// const parser = new Parser({
-//   headers: {
-//     Accept: "application/xhtml+xml,application/xml,application/rss+xml",
-//   },
-// });
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
@@ -36,7 +30,6 @@ app.set("views", path.join(__dirname, "views"));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // parse application/json
 app.use(bodyParser.json());
 
@@ -62,21 +55,7 @@ app.get("/", async (req, res) => {
   // console.log("category is", article.category)});
   return res.render("index", { articles, moment, title: "Home", timelapseint });
 });
-// app.get("/", async (req, res) => {
-//   let timelapseint = await req.cookies["timelapseint"];
-//   if (!timelapseint) {
-//    timelapseint = 604800000;
-//  }
-//   let articles = await source();
-//   articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-//   await setAsync("articles", 1800, JSON.stringify(articles));
-//   return res.render("index", {
-//     articles,
-//     moment,
-//     title: "Home",
-//     timelapseint,
-//   });
-// });
+
 app.get("/najnovije", async (req, res) => {
   let articles = await source();
   articles.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -159,6 +138,7 @@ app.get("/hrvatska", async (req, res) => {
     timelapseint,
   });
 });
+
 app.get("/makedonija", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
   if (!timelapseint||timelapseint=="undefined") {
@@ -190,7 +170,6 @@ app.get("/politika/:countrypath/:countrytitle", async (req, res) => {
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
     await setAsync("politika", 1800, JSON.stringify(articles));
   }
-
   res.render("politika", { articles, moment, title, subpath, timelapseint });
 });
 
@@ -227,7 +206,6 @@ app.get("/drustvo/:countrypath/:countrytitle", async (req, res) => {
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
     await setAsync("drustvo", 1800, JSON.stringify(articles));
   }
-
   res.render("drustvo", { articles, moment, title, subpath, timelapseint });
 });
 
@@ -246,7 +224,6 @@ app.get("/kultura/:countrypath/:countrytitle", async (req, res) => {
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
     await setAsync("kultura", 1800, JSON.stringify(articles));
   }
-
   res.render("kultura", { articles, moment, title, subpath, timelapseint });
 });
 
@@ -265,7 +242,6 @@ app.get("/sport/:countrypath/:countrytitle", async (req, res) => {
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
     await setAsync("sport", 1800, JSON.stringify(articles));
   }
-
   res.render("sport", { articles, moment, title, subpath, timelapseint });
 });
 
@@ -298,20 +274,6 @@ app.get("/dodatno", async (req, res) => {
   console.log("dodatno je aktivno");
   res.render("dodatno", { title: "Dodatno" });
 });
-// app.post("/showarticle", (req, res) => {
-//   const data = req.body;
-
-//  console.log("data is", data);
-//   let article = {
-//     title: data.title,
-//     link: data.link,
-//     content: data.content,
-//     logo: data.logo,
-//     source: data.source,
-//     image: data.image,
-//   };
-//   res.render("showarticle", { article, moment, title: "Pregled vesti" });
-// });
 app.get("/portali", async (req, res) => {
   let portals = await portali();
   res.render("portali", { title: "Medijski portali koje vi birate", portals });
@@ -330,8 +292,7 @@ app.get("/portal/:portName", async (req, res) => {
       articles.push(allArticles[i]);
     }
   }
-  //console.log("izdvajamo", articles)
-  return res.render("index", {
+  return res.render("portal-arts", {
     articles,
     moment,
     title: portName,
@@ -349,7 +310,6 @@ app.post("/showarticle", async (req, res) => {
     source: data.source,
     image: data.image,
   };
-
   var myJSON = JSON.stringify(article);
   res.cookie("context", myJSON);
   //console.log(article)
@@ -367,20 +327,7 @@ app.post("/showarticle", async (req, res) => {
   res.redirect("/checking");
   //res.send('');
 });
-app.get("/checking", async (req, res) => {
-  //console.log(req.cookies['context'])
-  //console.log("sta god.")
-  const articleJson = await req.cookies["balkannewssavedarticles"];
-  let article = JSON.parse(articleJson);
-  // let linkPath=article.link;
-  // res.clearCookie("context");
-  console.log("sta god.", article);
-  //res.status(404).render("404", { title: "404" });
-  // res.status(200).render("selected", { linkPath, title: "Selected" }, function (err, html) {
-  // ...
-  //});
-  //res.send('');
-});
+
 
 app.get("/preview/:title/:content/:source/", async (req, res) => {
   let article = {
@@ -392,15 +339,7 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
     image: req.query.artImage,
   };
   saveAsRead(article);
-  console.log("article.logo is line 377 ",req.params )
-  console.log("article.logo is line 378 ",req.query )
-  console.log("article.logo is line 379 ",article )
   res.render("preview", { article, moment, title: "Pregled vesti" });
-  // const articleJson = await req.cookies["context"];
-  // let article = JSON.parse(articleJson)
-  // console.log("podaci su", "article");
-  //   res.clearCookie("context", { httpOnly: true });
-  // res.render("selected", { linkPath : "https://www.codota.com/code/javascript/functions/express/Response/render", title: "Selected" });
 });
 
 function saveAsRead(article) {
@@ -430,10 +369,7 @@ function saveAsRead(article) {
       database.insert(data);
     } else {
       console.log("this is else");
-      // let allAnswers = result[0].answers;
-      // let linkedArticle = result[0];
       let newNumberOfVisits = result[0].numberOfVisits + 1;
-      // allAnswers.push(newAnswer);
       database.update(
         { _id: result[0]._id },
         { $set: { numberOfVisits: newNumberOfVisits } },
@@ -485,7 +421,11 @@ app.post("/savearticle", async (req, res) => {
 app.get("/sacuvane-vesti", async (req, res) => {
   let articles = null;
   let cookie = await req.cookies["balkannewssavedarticles"];
-  articles = JSON.parse(cookie);
+  console.log("sacuvane su",articles)
+  if(cookie){
+    articles = JSON.parse(cookie);
+  }
+  
   //   // if ((await existsAsync("articles")) === 1) {
   //   //   console.log("redis smeta")
   //   //   articles = JSON.parse(await getAsync("articles"));
@@ -525,10 +465,28 @@ app.get("/period12", async (req, res) => {
   res.cookie("timelapseint", timelapseint);
   res.redirect("/");
 });
-
+app.get("/smperiod168", async (req, res) => {
+  let timelapseint = 604800000;
+  res.cookie("timelapseint", timelapseint);
+  res.redirect('back');
+});
+app.get("/smperiod72", async (req, res) => {
+  let timelapseint = 259200000;
+  res.cookie("timelapseint", timelapseint);
+  res.redirect('back');
+});
+app.get("/smperiod24", async (req, res) => {
+  let timelapseint = 86400000;
+  res.cookie("timelapseint", timelapseint);
+  res.redirect('back');
+});
+app.get("/smperiod12", async (req, res) => {
+  let timelapseint = 43200000;
+  res.cookie("timelapseint", timelapseint);
+  res.redirect('back');
+});
 app.get("/najcitanije", async (req, res) => {
   timelapseint = 604800000;
-
   console.log("ovo je najcitanije");
   database.find({}, (err, result) => {
     let articles = result;
@@ -536,8 +494,6 @@ app.get("/najcitanije", async (req, res) => {
     articles.sort(function (a, b) {
       return b.numberOfVisits - a.numberOfVisits;
     });
-    //articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-    //setAsync("articles", 1800, JSON.stringify(articles));
     console.log("najcitanije su", articles.length);
     res.render("najcitanije", {
       articles,
@@ -547,10 +503,9 @@ app.get("/najcitanije", async (req, res) => {
     });
   });
 });
+
 app.get("/search", async (req, res) => {
- 
-    timelapseint = 604800000;
-  
+    timelapseint = 604800000;  
   const { term } = req.query;
   console.log(term);
   let articles = [];
