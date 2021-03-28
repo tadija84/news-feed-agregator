@@ -1,3 +1,4 @@
+
 <div class="hero_header">
     <div class="logo-n-text">
         <div class="titles-n-subtitles">
@@ -31,13 +32,13 @@
 
 <nav id="navigation-bar" class="navigation-bar invisible">
     <ul class="navigation-list main-nav-list">
-        <li class="glavna-link marko"><a class="link-con glavna-con" href="/">Glavna</a></li>
-        <li class="tab-link marko"><a class="link-con" href="/najnovije">Najnovije</a></li>
-        <li class="tab-link marko"><a class="link-con" href="/najcitanije">Najčitanije</a></li>
-        <li class="tab-link accordion ">
-            <h3 class="menu-tab link-con">Srbija</h3>
+        <li class="glavna-link"><a class="link-con glavna-con" href="/">Glavna</a></li>
+        <li class="tab-link"><a class="link-con" href="/najnovije">Najnovije</a></li>
+        <li class="tab-link"><a class="link-con" href="/najcitanije">Najčitanije</a></li>
+        <li class="tab-link accordion">
+            <h3 class="menu-tab link-con mark-tab">Srbija</h3>
             <div class="sub-menu">
-                <ul>
+                <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/srbija">Sve</a></li>
                     <li class="sub-nav-tab"><a href="/politika/srbija/Srbija">Politika</a></li>
                     <li class="sub-nav-tab"><a href="/zabava/srbija/Srbija">Zabava</a></li>
@@ -49,9 +50,9 @@
             </div>
         </li>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con" h3>Crna Gora</h3>
+            <h3 class="menu-tab link-con mark-tab" h3>Crna Gora</h3>
             <div class="sub-menu">
-                <ul>
+                <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/crna-gora">Sve</a></li>
                     <li class="sub-nav-tab"><a href="/politika/crna-gora/Crna%20Gora">Politika</a></li>
                     <li class="sub-nav-tab"><a href="/zabava/crna-gora/Crna%20Gora">Zabava</a></li>
@@ -63,9 +64,9 @@
             </div>
         </li>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con" h3>BiH</h3>
+            <h3 class="menu-tab link-con mark-tab" h3>BiH</h3>
             <div class="sub-menu">
-                <ul>
+                <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/bosna-i-hercegovina">Sve</a></li>
                     <li class="sub-nav-tab"><a href="/politika/bosna-i-hercegovina/BiH">Politika</a></li>
                     <li class="sub-nav-tab"><a href="/zabava/bosna-i-hercegovina/BiH">Zabava</a></li>
@@ -77,9 +78,9 @@
             </div>
         </li>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con" h3>Hrvatska</h3>
+            <h3 class="menu-tab link-con mark-tab" h3>Hrvatska</h3>
             <div class="sub-menu">
-                <ul>
+                <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/hrvatska">Sve</a></li>
                     <li class="sub-nav-tab"><a href="/politika/hrvatska/Hrvatska">Politika</a></li>
                     <li class="sub-nav-tab"><a href="/zabava/hrvatska/Hrvatska">Zabava</a></li>
@@ -91,9 +92,9 @@
             </div>
         </li>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con" h3>Makedonija</h3>
+            <h3 class="menu-tab link-con mark-tab" h3>Makedonija</h3>
             <div class="sub-menu">
-                <ul>
+                <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/makedonija">Sve</a></li>
                     <li class="sub-nav-tab"><a href="/politika/makedonija/Makedonija">Politika</a></li>
                     <li class="sub-nav-tab"><a href="/zabava/makedonija/Makedonija">Zabava</a></li>
@@ -104,10 +105,11 @@
                 </ul>
             </div>
         </li>
-        <li class="tab-link marko"><a class="link-con" href="/">Ljubimci</a></li>
-        <li class="tab-link marko"><a class="link-con" href="/">Putovanja</a></li>
-        <li class="tab-link "><a class="link-con marko" href="/dodatno">Još</a></li>
+        <li class="tab-link"><a class="link-con" href="/">Ljubimci</a></li>
+        <li class="tab-link"><a class="link-con" href="/">Putovanja</a></li>
+        <li class="tab-link"><a class="link-con " href="/dodatno">Još</a></li>
     </ul>
+   
 </nav>
 <script>
     const menuBtn = document.querySelector(".menu-button");
@@ -123,12 +125,27 @@
     const accordion = document.querySelectorAll(".accordion");
     const subMenu = document.querySelectorAll(".sub-menu")
     accordion.forEach(element => element.addEventListener("click", function () {
-        if (element.children[1].style.display == "block") {
-            element.children[1].style.display = "none";
-        } else {
-            subMenu.forEach(countryMenu => countryMenu.style.display = "none");
-            element.children[1].style.display = "block";
+        accordion.forEach(elm => elm.children[0].classList.remove("marked")) 
+
+        if ( element.children[1].classList.contains("visible")) {
+            setTimeout(function(){  element.children[1].classList.remove("visible");
+            }, 450);
+            element.children[1].classList.add("non-visible");
+            element.children[0].classList.remove("marked");
+           
+        }else{
+            subMenu.forEach(countryMenu => countryMenu.classList.remove("visible"));
+            element.children[1].classList.remove("non-visible");
+            element.children[0].classList.add("marked");
+            element.children[1].classList.add("visible")
+           
         }
+        // if (element.children[1].style.display == "block") {
+        //     element.children[1].style.display = "none";
+        // } else {
+        //     subMenu.forEach(countryMenu => countryMenu.style.display = "none");
+        //     element.children[1].style="display: block; animation-name: turning-in;";
+        // }
     }));
     let parent = document.querySelector('.navigation-bar').parentElement;
 
