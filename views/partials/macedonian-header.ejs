@@ -14,108 +14,146 @@
     <div class="menu-button">
         <div class="menu-button__burger"></div>
     </div>
-    <nav id="navigation-bar" class="navigation-bar invisible">
-        <ul class="navigation-list main-nav-list">
-            <li class="glavna-link"><a class="link-con glavna-con" href="/">Главна</a></li>
-            <li class="tab-link"><a class="link-con" href="/najnovije">Последни вести</a></li>
-            <li class="tab-link"><a class="link-con" href="/najcitanije">Најчитани вести</a></li>
-            <li class="tab-link accordion ">
-                <h3 class="menu-tab link-con">Србија</h3>
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-nav-tab country-name"><a href="/srbija">Сите</a></li>
-                        <li class="sub-nav-tab"><a href="/politika/srbija/Sve">Политика</a></li>
-                        <li class="sub-nav-tab"><a href="/zabava/srbija/Srbija">Забава</a></li>
-                        <li class="sub-nav-tab"><a href="/sport/srbija/Srbija">Спорт</a></li>
-                        <li class="sub-nav-tab"><a href="/drustvo/srbija/Srbija">Општество</a></li>
-                        <li class="sub-nav-tab"><a href="/kultura/srbija/Srbija">Култура</a></li>
-                        <li class="sub-nav-tab"><a href="/aktuelno/srbija/Srbija">Актуелно</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="tab-link accordion">
-                <h3 class="menu-tab link-con" h3>Црна Гора</h3>
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-nav-tab country-name"><a href="/crna-gora">Сите</a></li>
-                        <li class="sub-nav-tab"><a href="/politika/crna-gora/Crna%20Gora">Политика</a></li>
-                        <li class="sub-nav-tab"><a href="/zabava/crna-gora/Crna%20Gora">Забава</a></li>
-                        <li class="sub-nav-tab"><a href="/sport/crna-gora/Crna%20Gora">Спорт</a></li>
-                        <li class="sub-nav-tab"><a href="/drustvo/crna-gora/Crna%20Gora">Општество</a></li>
-                        <li class="sub-nav-tab"><a href="/kultura/crna-gora/Crna%20Gora">Култура</a></li>
-                        <li class="sub-nav-tab"><a href="/aktuelno/crna-gora/Crna%20Gora">Актуелно</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="tab-link accordion">
-                <h3 class="menu-tab link-con" h3>БиХ</h3>
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-nav-tab country-name"><a href="/bosna-i-hercegovina">Сите</a></li>
-                        <li class="sub-nav-tab"><a href="/politika/bosna-i-hercegovina/BiH">Политика</a></li>
-                        <li class="sub-nav-tab"><a href="/zabava/bosna-i-hercegovina/BiH">Забава</a></li>
-                        <li class="sub-nav-tab"><a href="/sport/bosna-i-hercegovina/BiH">Спорт</a></li>
-                        <li class="sub-nav-tab"><a href="/drustvo/bosna-i-hercegovina/BiH">Општество</a></li>
-                        <li class="sub-nav-tab"><a href="/kultura/bosna-i-hercegovina/BiH">Култура</a></li>
-                        <li class="sub-nav-tab"><a href="/aktuelno/bosna-i-hercegovina/BiH">Актуелно</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="tab-link accordion">
-                <h3 class="menu-tab link-con" h3>Хрватска</h3>
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-nav-tab country-name"><a href="/hrvatska">Сите</a></li>
-                        <li class="sub-nav-tab"><a href="/politika/hrvatska/Hrvatska">Политика</a></li>
-                        <li class="sub-nav-tab"><a href="/zabava/hrvatska/Hrvatska">Забава</a></li>
-                        <li class="sub-nav-tab"><a href="/sport/hrvatska/Hrvatska">Спорт</a></li>
-                        <li class="sub-nav-tab"><a href="/drustvo/hrvatska/Hrvatska">Општество</a></li>
-                        <li class="sub-nav-tab"><a href="/kultura/hrvatska/Hrvatska">Култура</a></li>
-                        <li class="sub-nav-tab"><a href="/aktuelno/hrvatska/Hrvatska">Актуелно</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="tab-link accordion">
-                <h3 class="menu-tab link-con" h3>Македонија</h3>
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-nav-tab country-name"><a href="/makedonija">Сите</a></li>
-                        <li class="sub-nav-tab"><a href="/politika/makedonija/Makedonija">Политика</a></li>
-                        <li class="sub-nav-tab"><a href="/zabava/makedonija/Makedonija">Забава</a></li>
-                        <li class="sub-nav-tab"><a href="/sport/makedonija/Makedonija">Спорт</a></li>
-                        <li class="sub-nav-tab"><a href="/drustvo/makedonija/Makedonija">Општество</a></li>
-                        <li class="sub-nav-tab"><a href="/kultura/makedonija/Makedonija">Култура</a></li>
-                        <li class="sub-nav-tab"><a href="/aktuelno/makedonija/Makedonija">Актуелно</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="tab-link"><a class="link-con" href="/">Миленици</a></li>
-            <li class="tab-link"><a class="link-con" href="/">Патувања</a></li>
-            <li class="tab-link"><a class="link-con" href="/dodatno">Повеќе</a></li>
+    <div class="small-time-container">
+        <ul class="small-time-options">
+            <% let link12h="" %>
+            <% if (timelapseint==43200000) {link12h="time-selected"}; %>
+            <% let link24h="" %>
+            <% if (timelapseint==86400000) {link24h="time-selected"}; %>
+            <% let link72h="" %>
+            <% if (timelapseint==259200000) {link72h="time-selected"}; %>
+            <% let link7d="" %>
+            <% if (timelapseint==604800000) {link7d="time-selected"}; %>
+            <li class="small-time-tab"><a class="small-time-link <%=`${link12h}`%>" href="/smperiod12"> 12h</a></li>
+            
+            <li class="small-time-tab"><a class="small-time-link <%=`${link24h}`%>" href="/smperiod24"> 24h</a></li>
+            
+            <li class="small-time-tab"><a class="small-time-link <%=`${link72h}`%>" href="/smperiod72"> 72h</a></li>
+            
+            <li class="small-time-tab"><a class="small-time-link <%=`${link7d}`%>" href="/smperiod168"> 7d</a></li>
         </ul>
-    </nav>
-
-    <script>
-        const menuBtn = document.querySelector(".menu-button");
-        const hamburger = document.querySelector(".menu-button__burger");
-        const navigationBar = document.querySelector("#navigation-bar");
-        menuBtn.addEventListener("click", toggleMenu);
-
-        function toggleMenu() {
-            hamburger.classList.toggle("open");
-            navigationBar.classList.toggle("invisible");
-        }
-
-        const accordion = document.querySelectorAll(".accordion");
-        const subMenu = document.querySelectorAll(".sub-menu")
-        accordion.forEach(element => element.addEventListener("click", function () {
-            if (element.children[1].style.display == "block") {
-                element.children[1].style.display = "none";
-            } else {
-                subMenu.forEach(countryMenu => countryMenu.style.display = "none");
-                element.children[1].style.display = "block";
-            }
-        }));
-    </script>
+    </div>
 
 </div>
+
+<nav id="navigation-bar" class="navigation-bar invisible">
+    <ul class="navigation-list main-nav-list">
+        <li class="glavna-link"><a class="link-con glavna-con" href="/">Главна</a></li>
+        <li class="tab-link"><a class="link-con" href="/najnovije">Последни вести</a></li>
+        <li class="tab-link"><a class="link-con" href="/najcitanije">Најчитани вести</a></li>
+        <li class="tab-link accordion ">
+            <h3 class="menu-tab link-con mark-tab">Србија</h3>
+            <div class="sub-menu">
+                <ul class="sub-list">
+                    <li class="sub-nav-tab country-name"><a href="/srbija">Сите</a></li>
+                    <li class="sub-nav-tab"><a href="/politika/srbija/Sve">Политика</a></li>
+                    <li class="sub-nav-tab"><a href="/zabava/srbija/Srbija">Забава</a></li>
+                    <li class="sub-nav-tab"><a href="/sport/srbija/Srbija">Спорт</a></li>
+                    <li class="sub-nav-tab"><a href="/drustvo/srbija/Srbija">Општество</a></li>
+                    <li class="sub-nav-tab"><a href="/kultura/srbija/Srbija">Култура</a></li>
+                    <li class="sub-nav-tab"><a href="/aktuelno/srbija/Srbija">Актуелно</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="tab-link accordion">
+            <h3 class="menu-tab link-con mark-tab" h3>Црна Гора</h3>
+            <div class="sub-menu">
+                <ul class="sub-list">
+                    <li class="sub-nav-tab country-name"><a href="/crna-gora">Сите</a></li>
+                    <li class="sub-nav-tab"><a href="/politika/crna-gora/Crna%20Gora">Политика</a></li>
+                    <li class="sub-nav-tab"><a href="/zabava/crna-gora/Crna%20Gora">Забава</a></li>
+                    <li class="sub-nav-tab"><a href="/sport/crna-gora/Crna%20Gora">Спорт</a></li>
+                    <li class="sub-nav-tab"><a href="/drustvo/crna-gora/Crna%20Gora">Општество</a></li>
+                    <li class="sub-nav-tab"><a href="/kultura/crna-gora/Crna%20Gora">Култура</a></li>
+                    <li class="sub-nav-tab"><a href="/aktuelno/crna-gora/Crna%20Gora">Актуелно</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="tab-link accordion">
+            <h3 class="menu-tab link-con mark-tab" h3>БиХ</h3>
+            <div class="sub-menu">
+                <ul class="sub-list">
+                    <li class="sub-nav-tab country-name"><a href="/bosna-i-hercegovina">Сите</a></li>
+                    <li class="sub-nav-tab"><a href="/politika/bosna-i-hercegovina/BiH">Политика</a></li>
+                    <li class="sub-nav-tab"><a href="/zabava/bosna-i-hercegovina/BiH">Забава</a></li>
+                    <li class="sub-nav-tab"><a href="/sport/bosna-i-hercegovina/BiH">Спорт</a></li>
+                    <li class="sub-nav-tab"><a href="/drustvo/bosna-i-hercegovina/BiH">Општество</a></li>
+                    <li class="sub-nav-tab"><a href="/kultura/bosna-i-hercegovina/BiH">Култура</a></li>
+                    <li class="sub-nav-tab"><a href="/aktuelno/bosna-i-hercegovina/BiH">Актуелно</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="tab-link accordion">
+            <h3 class="menu-tab link-con mark-tab" h3>Хрватска</h3>
+            <div class="sub-menu">
+                <ul class="sub-list">
+                    <li class="sub-nav-tab country-name"><a href="/hrvatska">Сите</a></li>
+                    <li class="sub-nav-tab"><a href="/politika/hrvatska/Hrvatska">Политика</a></li>
+                    <li class="sub-nav-tab"><a href="/zabava/hrvatska/Hrvatska">Забава</a></li>
+                    <li class="sub-nav-tab"><a href="/sport/hrvatska/Hrvatska">Спорт</a></li>
+                    <li class="sub-nav-tab"><a href="/drustvo/hrvatska/Hrvatska">Општество</a></li>
+                    <li class="sub-nav-tab"><a href="/kultura/hrvatska/Hrvatska">Култура</a></li>
+                    <li class="sub-nav-tab"><a href="/aktuelno/hrvatska/Hrvatska">Актуелно</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="tab-link accordion">
+            <h3 class="menu-tab link-con mark-tab page-selected" h3>Македонија</h3>
+            <div class="sub-menu">
+                <ul class="sub-list">
+                    <li class="sub-nav-tab country-name"><a href="/makedonija">Сите</a></li>
+                    <li class="sub-nav-tab"><a href="/politika/makedonija/Makedonija">Политика</a></li>
+                    <li class="sub-nav-tab"><a href="/zabava/makedonija/Makedonija">Забава</a></li>
+                    <li class="sub-nav-tab"><a href="/sport/makedonija/Makedonija">Спорт</a></li>
+                    <li class="sub-nav-tab"><a href="/drustvo/makedonija/Makedonija">Општество</a></li>
+                    <li class="sub-nav-tab"><a href="/kultura/makedonija/Makedonija">Култура</a></li>
+                    <li class="sub-nav-tab"><a href="/aktuelno/makedonija/Makedonija">Актуелно</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="tab-link"><a class="link-con" href="/ljubimci">Миленици</a></li>
+        <li class="tab-link"><a class="link-con" href="/putovanja">Патувања</a></li>
+        <li class="tab-link"><a class="link-con" href="/dodatno">Повеќе</a></li>
+    </ul>
+</nav>
+
+<script>
+    const menuBtn = document.querySelector(".menu-button");
+    const hamburger = document.querySelector(".menu-button__burger");
+    const navigationBar = document.querySelector("#navigation-bar");
+    menuBtn.addEventListener("click", toggleMenu);
+
+    function toggleMenu() {
+        hamburger.classList.toggle("open");
+        navigationBar.classList.toggle("invisible");
+    }
+
+    const accordion = document.querySelectorAll(".accordion");
+    const subMenu = document.querySelectorAll(".sub-menu")
+    accordion.forEach(element => element.addEventListener("click", function () {
+        accordion.forEach(elm => elm.children[0].classList.remove("marked")) 
+
+        if ( element.children[1].classList.contains("visible")) {
+            setTimeout(function(){  element.children[1].classList.remove("visible");
+            }, 450);
+            element.children[1].classList.add("non-visible");
+            element.children[0].classList.remove("marked");
+           
+        }else{
+            subMenu.forEach(countryMenu => countryMenu.classList.remove("visible"));
+            element.children[1].classList.remove("non-visible");
+            element.children[0].classList.add("marked");
+            element.children[1].classList.add("visible")
+           
+        }
+    }));
+    let parent = document.querySelector('.navigation-bar').parentElement;
+
+while (parent) {
+const hasOverflow = getComputedStyle(parent).overflow;
+if(hasOverflow !== 'visible') {
+    console.log(hasOverflow, parent);
+}
+parent = parent.parentElement;
+}
+</script>

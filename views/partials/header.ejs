@@ -1,4 +1,3 @@
-
 <div class="hero_header">
     <div class="logo-n-text">
         <div class="titles-n-subtitles">
@@ -19,10 +18,21 @@
         
             <div class="small-time-container">
                 <ul class="small-time-options">
-                    <li class="small-time-tab"><a class="small-time-link" href="/smperiod12"> 12h</a></li>
-                    <li class="small-time-tab"><a class="small-time-link" href="/smperiod24"> 24h</a></li>
-                    <li class="small-time-tab"><a class="small-time-link" href="/smperiod72"> 72h</a></li>
-                    <li class="small-time-tab"><a class="small-time-link" href="/smperiod168"> 7d</a></li>
+                    <% let link12h="" %>
+                    <% if (timelapseint==43200000) {link12h="time-selected"}; %>
+                    <% let link24h="" %>
+                    <% if (timelapseint==86400000) {link24h="time-selected"}; %>
+                    <% let link72h="" %>
+                    <% if (timelapseint==259200000) {link72h="time-selected"}; %>
+                    <% let link7d="" %>
+                    <% if (timelapseint==604800000) {link7d="time-selected"}; %>
+                    <li class="small-time-tab"><a class="small-time-link <%=`${link12h}`%>" href="/smperiod12"> 12h</a></li>
+                    
+                    <li class="small-time-tab"><a class="small-time-link <%=`${link24h}`%>" href="/smperiod24"> 24h</a></li>
+                    
+                    <li class="small-time-tab"><a class="small-time-link <%=`${link72h}`%>" href="/smperiod72"> 72h</a></li>
+                    
+                    <li class="small-time-tab"><a class="small-time-link <%=`${link7d}`%>" href="/smperiod168"> 7d</a></li>
                 </ul>
             </div>
         
@@ -32,11 +42,19 @@
 
 <nav id="navigation-bar" class="navigation-bar invisible">
     <ul class="navigation-list main-nav-list">
-        <li class="glavna-link"><a class="link-con glavna-con" href="/">Glavna</a></li>
-        <li class="tab-link"><a class="link-con" href="/najnovije">Najnovije</a></li>
-        <li class="tab-link"><a class="link-con" href="/najcitanije">Najčitanije</a></li>
+        <% let linkMainPage="" %>
+        <% if (title=="Home") {linkMainPage="page-selected"}; %>
+        <li class="glavna-link"><a class="link-con glavna-con <%=`${linkMainPage}`%>" href="/">Glavna</a></li>
+        <% let linkLatestPage="" %>
+        <% if (title=="Najnovije vesti") {linkLatestPage="page-selected"}; %>
+        <li class="tab-link"><a class="link-con <%=`${linkLatestPage}`%>" href="/najnovije">Najnovije</a></li>
+        <% let linkPopularPage="" %>
+        <% if (title=="Najčitanije vesti u regionu") {linkPopularPage="page-selected"}; %>
+        <li class="tab-link"><a class="link-con <%=`${linkPopularPage}`%>" href="/najcitanije">Najčitanije</a></li>
+        <% let linkSerbianPage="" %>
+        <% if (title=="Srbija") {linkSerbianPage="page-selected"}; %>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con mark-tab">Srbija</h3>
+            <h3 class="menu-tab link-con mark-tab <%=`${linkSerbianPage}`%>">Srbija</h3>
             <div class="sub-menu">
                 <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/srbija">Sve</a></li>
@@ -49,8 +67,10 @@
                 </ul>
             </div>
         </li>
+        <% let linkMontenegrinPage="" %>
+        <% if (title=="Crna Gora") {linkMontenegrinPage="page-selected"}; %>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con mark-tab" h3>Crna Gora</h3>
+            <h3 class="menu-tab link-con mark-tab <%=`${linkMontenegrinPage}`%>" h3>Crna Gora</h3>
             <div class="sub-menu">
                 <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/crna-gora">Sve</a></li>
@@ -63,8 +83,10 @@
                 </ul>
             </div>
         </li>
+        <% let linkBosnianPage="" %>
+        <% if (title=="BiH") {linkBosnianPage="page-selected"}; %>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con mark-tab" h3>BiH</h3>
+            <h3 class="menu-tab link-con mark-tab <%=`${linkBosnianPage}`%>" h3>BiH</h3>
             <div class="sub-menu">
                 <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/bosna-i-hercegovina">Sve</a></li>
@@ -77,8 +99,10 @@
                 </ul>
             </div>
         </li>
+        <% let linkCroPage="" %>
+        <% if (title=="Hrvatska") {linkCroPage="page-selected"}; %>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con mark-tab" h3>Hrvatska</h3>
+            <h3 class="menu-tab link-con mark-tab <%=`${linkCroPage}`%>" h3>Hrvatska</h3>
             <div class="sub-menu">
                 <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/hrvatska">Sve</a></li>
@@ -91,8 +115,10 @@
                 </ul>
             </div>
         </li>
+        <% let linkMacedonianPage="" %>
+        <% if (title=="Makedonija") {linkMacedonianPage="page-selected"}; %>
         <li class="tab-link accordion">
-            <h3 class="menu-tab link-con mark-tab" h3>Makedonija</h3>
+            <h3 class="menu-tab link-con mark-tab <%=`${linkMacedonianPage}`%>" h3>Makedonija</h3>
             <div class="sub-menu">
                 <ul class="sub-list">
                     <li class="sub-nav-tab country-name"><a href="/makedonija">Sve</a></li>
@@ -105,9 +131,15 @@
                 </ul>
             </div>
         </li>
-        <li class="tab-link"><a class="link-con" href="/">Ljubimci</a></li>
-        <li class="tab-link"><a class="link-con" href="/">Putovanja</a></li>
-        <li class="tab-link"><a class="link-con " href="/dodatno">Još</a></li>
+        <% let linkPetsPage="" %>
+        <% if (title=="Ljubimci") {linkPetsPage="page-selected"}; %>
+        <li class="tab-link"><a class="link-con <%=`${linkPetsPage}`%>" href="/ljubimci">Ljubimci</a></li>
+        <% let linkTravelPage="" %>
+        <% if (title=="Putovanja") {linkTravelPage="page-selected"}; %>
+        <li class="tab-link"><a class="link-con <%=`${linkTravelPage}`%>" href="/putovanja">Putovanja</a></li>
+        <% let linkMorePage="" %>
+        <% if (title=="Dodatno") {linkMorePage="page-selected"}; %>
+        <li class="tab-link"><a class="link-con <%=`${linkMorePage}`%>" href="/dodatno">Još</a></li>
     </ul>
    
 </nav>
@@ -140,12 +172,6 @@
             element.children[1].classList.add("visible")
            
         }
-        // if (element.children[1].style.display == "block") {
-        //     element.children[1].style.display = "none";
-        // } else {
-        //     subMenu.forEach(countryMenu => countryMenu.style.display = "none");
-        //     element.children[1].style="display: block; animation-name: turning-in;";
-        // }
     }));
     let parent = document.querySelector('.navigation-bar').parentElement;
 

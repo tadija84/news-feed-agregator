@@ -9,11 +9,13 @@ const feeds = require("./feeds");
 const requestRss = async (urls) => {
   try {
     const feedLinks = urls.map((url) => parser.parseURL(url));
+    
     //ovde je i dalje array
     //const requests =await Promise.race(feedLinks); //ovde je umesto Promise.race bio Promise.allSetled
     const requests = [];
     for (let i = 0; i < feedLinks.length; i++) {
       let newFeed = await (feedLinks[i]);
+      // console.log(newFeed);
       requests.push(newFeed);
     }
    // console.log("requests su ovde "+requests[0].title);//ovde je niz objekata
@@ -28,6 +30,7 @@ const requestRss = async (urls) => {
     return toReturn;
   } catch (e) {
     console.error("ERROR IS in sources.js",e,urls);
+    console.log(e.message);
     return;
   }
 };
@@ -53,6 +56,10 @@ const getArticles = async (feed, reqLinks) => {
       ) {    
         let contentToShow;
         let content;
+        if(item.categories){
+          // console.log("title is ",feed.name);
+          // console.log("categories are ",item.categories);
+        }
         if(item.contentSnippet){
           contentToShow=item.contentSnippet.slice(0, 180)+"...";
           content=item.contentSnippet;
@@ -123,5 +130,29 @@ module.exports.sport = async () => {
   return [].concat.apply(
     [],
     await Promise.all(feeds.map((feed) => getArticles(feed, "sport")))
+  );
+};
+module.exports.ljubimci = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "ljubimci")))
+  );
+};
+module.exports.putovanja = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "putovanja")))
+  );
+};
+module.exports.cryptocurrency = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "kripto")))
+  );
+};
+module.exports.hitech = async () => {
+  return [].concat.apply(
+    [],
+    await Promise.all(feeds.map((feed) => getArticles(feed, "hitech")))
   );
 };

@@ -13,6 +13,8 @@ const direktno = {
     sport: ['https://direktno.rs/rss/sport.html'],
     ljubimci: [],
     putovanja: [],
+    kripto: [],
+   hitech: [],
     drzava: ['srbija']
 };
 const blic = {
@@ -33,6 +35,8 @@ const blic = {
     sport: [],
     ljubimci: [],
     putovanja: [],
+    kripto: [],
+   hitech: [],
     drzava: ['srbija']
 };
 
@@ -51,6 +55,8 @@ const oslobodjenje = {
    sport: [ 'https://sport1.oslobodjenje.ba/s1/feed/category/300000'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['bosna-i-hercegovina']
 };
 
@@ -73,6 +79,8 @@ const danas = {
     sport: ['https://www.danas.rs/rubrika/sport/feed'],
     ljubimci: [],
     putovanja: [],
+    kripto: [],
+   hitech: [],
     drzava: ['srbija']
 };
 
@@ -92,6 +100,8 @@ const politika= {
     sport: [],
     ljubimci: [],
     putovanja: [],
+    kripto: [],
+   hitech: [],
     drzava: ['srbija']
 };
 const dnevniAvaz= {
@@ -110,6 +120,8 @@ const dnevniAvaz= {
     sport: ['https://avaz.ba/rss/sport'],
     ljubimci: [],
     putovanja: [],
+    kripto: [],
+   hitech: [],
     drzava: ['bosna-i-hercegovina']
 };
 
@@ -124,11 +136,13 @@ const jutarnji = {
     drustvo: [ ],
     hronika: [ 'https://www.jutarnji.hr/vijesti/crna-kronika/feed'],
     vesti: [ 'https://www.jutarnji.hr/vijesti/feed'],
-    kultura: [ 'https://www.jutarnji.hr/kultura/feedi'],
+    kultura: [ 'https://www.jutarnji.hr/kultura/feed'],
     zanimljivosti: [],
     putovanja:['https://www.jutarnji.hr/like-putovanja/feed'],
     sport: ['https://sportske.jutarnji.hr/sn/feed'],
-    putovanja: [],
+    ljubimci: [],
+    kripto: [],
+   hitech: [],
     drzava: ['hrvatska']
 };
 
@@ -148,6 +162,8 @@ const slobodnaDalmacija = {
     sport: ['https://slobodnadalmacija.hr/sport/feed'],
     ljubimci: [],
     putovanja: [],
+    kripto: [],
+   hitech: [],
     drzava: ['hrvatska']
 };
 const mondo = {
@@ -165,6 +181,8 @@ const mondo = {
     sport: [],
     ljubimci: [],
     putovanja: [],
+    kripto: [],
+   hitech: [],
     drzava: []
 };
 const republika = {
@@ -185,6 +203,8 @@ const republika = {
    sport: ['https://www.republika.rs/rss/sport'],
    ljubimci:['https://www.republika.rs/rss/lifestyle/ljubimac'],
    putovanja: ['https://www.republika.rs/rss/lifestyle/putovanja'],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 const blicZena = {
@@ -203,6 +223,8 @@ const blicZena = {
    sport: [],
    ljubimci:[],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 const pinkRs = {
@@ -221,6 +243,8 @@ const pinkRs = {
    sport: ['https://pink.rs/feed/sport'],
    ljubimci: ['https://pink.rs/feed/zivotinje'],
    putovanja: ['https://pink.rs/feed/putovanja'],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 
@@ -242,6 +266,8 @@ const nedeljnik = {
    sport: ['https://www.nedeljnik.rs/category/vesti/sport/feed/'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 const srbijaDanas = {
@@ -266,6 +292,8 @@ const srbijaDanas = {
    sport: ['https://www.srbijadanas.com/taxonomy/term/2/feed'],
    ljubimci: ['https://www.srbijadanas.com/taxonomy/term/3390/feed'],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 
@@ -285,6 +313,8 @@ const novaS = {
    sport: ['https://nova.rs/category/vesti/sport/feed/'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 const kurir = {
@@ -303,6 +333,8 @@ const kurir = {
    sport: ['https://www.kurir.rs/rss/sport'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 const telegraf = {
@@ -322,6 +354,8 @@ const telegraf = {
    sport: ['https://www.telegraf.rs/rss/sport'],
    ljubimci: [],
    putovanja: ['https://www.telegraf.rs/rss/putovanja'],
+   kripto: [],
+   hitech: [],
    drzava: ['srbija']
 };
 const makedonskiVesnik = {
@@ -341,6 +375,8 @@ const makedonskiVesnik = {
    sport: ['https://makedonskivesnik.com/category/sport/feed/'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['makedonija']
 };
 const makedonskiKurir = {
@@ -360,11 +396,12 @@ const makedonskiKurir = {
    sport: ['https://kurir.mk/category/sport/feed/'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['makedonija']
 };
 const fokus = {
     logoURL: '',
-  
    name: 'Фокус',
    links: [
        'https://fokus.mk/feed/'
@@ -379,6 +416,8 @@ const fokus = {
    sport: ['https://fokus.mk/kategorija/kategorija-life/sport/feed/'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['makedonija']
 };
 const novaMakedonija = {
@@ -398,7 +437,10 @@ const novaMakedonija = {
    sport: ['https://www.novamakedonija.com.mk/category/sport/feed/'],
    ljubimci: [],
    putovanja: [],
+   kripto: [],
+   hitech: [],
    drzava: ['makedonija']
+   
 };
 //vratiti politiku, nesto nece da radi kako valja
 module.exports = [nedeljnik,novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];

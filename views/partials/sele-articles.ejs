@@ -1,13 +1,18 @@
 <div class="news-content"> 
     <% articles.forEach(function(article) { %> 
-         <% if (article.image) { %>
+  
         <% let now=new Date()%>
         <% let pubdate=new Date(article.date)%> 
         <% if (now.getTime()-pubdate.getTime()< timelapseint*7) { %>
     <div class="card news-item">     
         <div class="card-content">         
-            <div class="article-picture" style="background-image: url(<%=`${article.image}`%>)">
-            </div>         
+            <% if (article.image) { %>
+                <div class="article-picture" style="background-image: url(<%=`${article.image}`%>);">
+                </div>
+                <% }else{ %>
+                <div class="article-picture" style="background-image: url(../../images/no-image.jpg);">
+                </div>
+                <% }; %>        
             <div class="media-source">   
              <div class="article-source-logo"  style="background-image: url(./images/logoi-portala/<%=`${article.logo}`%>)"></div>
                <time class="day-n-time"
@@ -28,29 +33,7 @@
         </div>
     </div>
     <% }; %>
-    <% }; %>
+    
     <% }); %>
 
-    <script>
-        async function showArticle(title, content, source, link, logo, image) {
-            let request = {
-                title: title,
-                content: content,
-                source: source,
-                link: link,
-                logo: logo,
-                image: image
-            };
-            let data = JSON.stringify(request);
-            let options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: 'include',
-                body: data,
-            };
-            fetch("/showarticle", options);
-        };
-    </script>
 </div>

@@ -4,18 +4,16 @@
 
 <body>
 
-    <% if (subpath=='makedonija') { %>
-        <%- include('./partials/macedonian-header.ejs')%>
-        <% }else{ %>
+  
             <%- include('./partials/header.ejs')%>
-            <% }; %>
+            
     <section class="section">
         <div class="container is-fluid">
             <div class="columns is-multiline">
                 <div class="column is-half is-offset-one-quarter">
                 </div>
                 <div class="column is-full">
-                    <%- include('./partials/all-articles.ejs')%>
+                    <%- include('./partials/sele-articles.ejs')%>
                 </div>
             </div>
         </div>

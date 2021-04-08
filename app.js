@@ -14,6 +14,10 @@ const {
   kultura,
   zanimljivosti,
   sport,
+  ljubimci,
+  putovanja,
+  cryptocurrency,
+  hitech
 } = require("./sources");
 const { portali } = require("./sviPortali");
 const moment = require("moment-timezone");
@@ -51,8 +55,11 @@ app.get("/", async (req, res) => {
     
     await setAsync("articles", 1800, JSON.stringify(articles));
   }
-  // articles.forEach((article) => {
-  // console.log("category is", article.category)});
+  articles.forEach((article) => {
+    if(article.category){
+      console.log("category is", article.category)
+    }
+  });
   return res.render("index", { articles, moment, title: "Home", timelapseint });
 });
 
@@ -109,7 +116,6 @@ app.get("/crna-gora", async (req, res) => {
 app.get("/bosna-i-hercegovina", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
   if (!timelapseint||timelapseint=="undefined") {
-    console.log("this is timelapseint",timelapseint)
     timelapseint = 604800000;
   }
   let articles = null;
@@ -265,18 +271,95 @@ app.get("/zabava/:countrypath/:countrytitle", async (req, res) => {
 });
 
 app.get("/selected/", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
   let linkPath = req.query.articleLink;
   console.log("putanja je ", linkPath);
-  res.render("selected", { linkPath, title: "Selected" });
+  res.render("selected", { linkPath, title: "Selected",timelapseint });
 });
-
+app.get("/ljubimci", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
+  let articles = null;
+  if ((await existsAsync("ljubimci")) === 1) {
+    articles = JSON.parse(await getAsync("ljubimci"));
+  } else {
+    articles = await ljubimci();
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date)); 
+    await setAsync("ljubimci", 1800, JSON.stringify(articles));
+  }
+  res.render("index", { articles, moment, title: "Ljubimci", timelapseint });
+});
+app.get("/putovanja", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
+  let articles = null;
+  if ((await existsAsync("putovanja")) === 1) {
+    articles = JSON.parse(await getAsync("putovanja"));
+  } else {
+    articles = await putovanja();
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date)); 
+    await setAsync("putovanja", 1800, JSON.stringify(articles));
+  }
+  res.render("index", { articles, moment, title: "Putovanja", timelapseint });
+});
+app.get("/kripto", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
+  let articles = null;
+  if ((await existsAsync("kripto")) === 1) {
+    articles = JSON.parse(await getAsync("kripto"));
+  } else {
+    articles = await cryptocurrency();
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date)); 
+    await setAsync("kripto", 1800, JSON.stringify(articles));
+  }
+  res.render("index", { articles, moment, title: "Cryptocurrency", timelapseint });
+});
+app.get("/hitech", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
+  let articles = null;
+  if ((await existsAsync("hitech")) === 1) {
+    articles = JSON.parse(await getAsync("hitech"));
+  } else {
+    articles = await hitech();
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date)); 
+    await setAsync("hitech", 1800, JSON.stringify(articles));
+  }
+  res.render("index", { articles, moment, title: "HiTech", timelapseint });
+});
 app.get("/dodatno", async (req, res) => {
-  console.log("dodatno je aktivno");
-  res.render("dodatno", { title: "Dodatno" });
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
+  res.render("dodatno", { title: "Dodatno", timelapseint });
 });
 app.get("/portali", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
   let portals = await portali();
-  res.render("portali", { title: "Medijski portali koje vi birate", portals });
+  res.render("portali", { title: "Medijski portali koje vi birate", portals , timelapseint});
 });
 app.get("/portal/:portName", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
@@ -300,18 +383,18 @@ app.get("/portal/:portName", async (req, res) => {
   });
 });
 
-app.post("/showarticle", async (req, res) => {
-  const data = req.body;
-  let article = {
-    title: data.title,
-    link: data.link,
-    content: data.content,
-    logo: data.logo,
-    source: data.source,
-    image: data.image,
-  };
-  var myJSON = JSON.stringify(article);
-  res.cookie("context", myJSON);
+// app.post("/showarticle", async (req, res) => {
+//   const data = req.body;
+//   let article = {
+//     title: data.title,
+//     link: data.link,
+//     content: data.content,
+//     logo: data.logo,
+//     source: data.source,
+//     image: data.image,
+//   };
+//   var myJSON = JSON.stringify(article);
+//   res.cookie("context", myJSON);
   //console.log(article)
 
   //res.render("preview", { article, moment, title: "Pregled vesti" });
@@ -321,15 +404,20 @@ app.post("/showarticle", async (req, res) => {
   // }catch (e) {
   //   console.error("ERROR IS",e);
   // }
-  console.log("cookie set");
+  // console.log("cookie set");
   //res.cookie('cookie', 'monster');
   //res.send({ redirectTo: '/checking' })
-  res.redirect("/checking");
+  // res.redirect("/checking");
   //res.send('');
-});
+// });
 
 
 app.get("/preview/:title/:content/:source/", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
   let article = {
     title: req.params.title,
     content: req.params.content,
@@ -339,7 +427,7 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
     image: req.query.artImage,
   };
   saveAsRead(article);
-  res.render("preview", { article, moment, title: "Pregled vesti" });
+  res.render("preview", { article, moment, title: "Pregled vesti",timelapseint });
 });
 
 function saveAsRead(article) {
@@ -354,7 +442,6 @@ function saveAsRead(article) {
     }
   );
   database.find({ link: article.link }, (err, result) => {
-    console.log("result is", result.length);
     if (result.length == 0) {
       let data = {
         title: article.title,
@@ -368,7 +455,6 @@ function saveAsRead(article) {
       };
       database.insert(data);
     } else {
-      console.log("this is else");
       let newNumberOfVisits = result[0].numberOfVisits + 1;
       database.update(
         { _id: result[0]._id },
@@ -384,65 +470,52 @@ app.post("/savearticle", async (req, res) => {
   const data = req.body;
   let article = {
     title: data.title,
-    link: data.link,
-    // content: data.content,
-    // logo: data.logo,
-    // source: data.source,
-    // image: data.image,
+    link: data.link
   };
   let articles = [];
 
   let cookie = await req.cookies["balkannewssavedarticles"];
-  console.log("cookie is ", cookie);
-  //res.clearCookie("balkannewssavedarticles");
   if (cookie !== undefined && cookie.includes(article.link) !== true) {
     articles = JSON.parse(cookie);
     articles.push(article);
-    console.log("artikles are", articles);
     let myJSON = JSON.stringify(articles);
     res.cookie("balkannewssavedarticles", myJSON);
     res.send("");
   } else {
     articles.push(article);
-    console.log("artikles are", articles);
     let myJSON = JSON.stringify(articles);
     res.cookie("balkannewssavedarticles", myJSON);
     res.send("");
-    console.log("this is else if as. article already exist");
   }
-  // res.redirect("/checking");
-  // var myJSON = JSON.stringify(article);
-  //
-  // res.cookie("balkannewssavedarticles12345", "isthisforreal4");
-  //var myJSON = JSON.stringify(article);
-  // res.cookie("context", myJSON, { httpOnly: true });
 });
 
 app.get("/sacuvane-vesti", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
   let articles = null;
   let cookie = await req.cookies["balkannewssavedarticles"];
   console.log("sacuvane su",articles)
   if(cookie){
     articles = JSON.parse(cookie);
   }
-  
-  //   // if ((await existsAsync("articles")) === 1) {
-  //   //   console.log("redis smeta")
-  //   //   articles = JSON.parse(await getAsync("articles"));
-  //   // } else {
-
-  //     // articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-  //     await setAsync("articles", 1800, JSON.stringify(articles));
-  //   // }
   res.render("sacuvane-vesti", {
     articles,
     moment,
     title: "Pregled sačuvanih vesti",
+    timelapseint
   });
 });
 
 app.get("/period", async (req, res) => {
-  res.render("period", { moment, title: "Vremenski period" });
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
+  res.render("period", { moment, title: "Vremenski period", timelapseint });
 });
 
 app.get("/period168", async (req, res) => {
@@ -487,14 +560,12 @@ app.get("/smperiod12", async (req, res) => {
 });
 app.get("/najcitanije", async (req, res) => {
   timelapseint = 604800000;
-  console.log("ovo je najcitanije");
   database.find({}, (err, result) => {
     let articles = result;
 
     articles.sort(function (a, b) {
       return b.numberOfVisits - a.numberOfVisits;
     });
-    console.log("najcitanije su", articles.length);
     res.render("najcitanije", {
       articles,
       moment,
@@ -504,27 +575,51 @@ app.get("/najcitanije", async (req, res) => {
   });
 });
 
+function cirToLat(y){
+  // console.log("cirilicno", y)
+  let cirillic=["а","б","в","г","д","ђ","е","ж","з","и","ј","к","л","љ","м","н","њ","о","п","р","с","т","ћ","у","ф","х","ц","ч","џ","ш","А","Б","В","Г","Д","Ђ","Е","Ж","З","И","Ј","К","Л","Љ","М","Н","Њ","О","П","Р","С","Т","Ћ","У","Ф","Х","Ц","Ч","Џ","Ш","Ѓ","ѓ","Ќ","ќ","Ѕ","ѕ"];
+  let latinic=["a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","Đ","đ","Ć","ć","DZ","dz"];
+  for(let index=0; index<cirillic.length; index++){
+    y=y.replace(cirillic[index],latinic[index])
+  }
+  // console.log("latinicno", y)
+  return y
+}
+function oneToAnother(x){
+    const serLat=["č","ć","ž","đ","š"];
+  const engLat=["c","c","z","dj","s"];
+  for(let ind=0; ind<serLat.length; ind++){
+    x=x.replace(serLat[ind],engLat[ind])
+  }
+  return x
+}
 app.get("/search", async (req, res) => {
-    timelapseint = 604800000;  
-  const { term } = req.query;
-  console.log(term);
+    timelapseint = 127604800000;  
+  let { term } = req.query;
+  console.log("ovo je","nesto", oneToAnother(cirToLat(term)));
+  
+  // console.log("new term", term)
   let articles = [];
   let allArticles = await source();
   allArticles.forEach((article) => {
     if (
-      article.title.toLowerCase().includes(term.toLowerCase()) == true ||
-      //article.content.toLowerCase().includes(term.toLowerCase()) == true ||
-      article.source.toLowerCase().includes(term.toLowerCase()) == true
+      oneToAnother(cirToLat(article.title)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
+      oneToAnother(cirToLat(article.content)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
+      oneToAnother(cirToLat(article.source)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true
     ) {
+      console.log("new term", article.title, article.date)
       articles.push(article);
     }
   });
-  console.log(articles[1]);
   res.render("searched", { articles, moment, title: "Rezultat pretrage",timelapseint });
 });
 
 app.use((req, res) => {
-  res.status(404).render("404", { title: "404" });
+  let timelapseint = req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+  }
+  res.status(404).render("404", { title: "404", timelapseint });
 });
 
 app.listen(PORT, () => {
