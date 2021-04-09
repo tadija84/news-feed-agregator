@@ -5,6 +5,10 @@ var bodyParser = require("body-parser");
 
 const Datastore = require("nedb");
 
+const MiniSearch = require('minisearch')
+const { transliter } = require('transliter');
+const convert = require('cyrillic-to-latin')
+
 const { existsAsync, setAsync, getAsync } = require("./redis");
 const {
   source,
@@ -575,16 +579,16 @@ app.get("/najcitanije", async (req, res) => {
   });
 });
 
-function cirToLat(y){
-  // console.log("cirilicno", y)
-  let cirillic=["а","б","в","г","д","ђ","е","ж","з","и","ј","к","л","љ","м","н","њ","о","п","р","с","т","ћ","у","ф","х","ц","ч","џ","ш","А","Б","В","Г","Д","Ђ","Е","Ж","З","И","Ј","К","Л","Љ","М","Н","Њ","О","П","Р","С","Т","Ћ","У","Ф","Х","Ц","Ч","Џ","Ш","Ѓ","ѓ","Ќ","ќ","Ѕ","ѕ"];
-  let latinic=["a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","Đ","đ","Ć","ć","DZ","dz"];
-  for(let index=0; index<cirillic.length; index++){
-    y=y.replace(cirillic[index],latinic[index])
-  }
-  // console.log("latinicno", y)
-  return y
-}
+// function cirToLat(y){
+//   // console.log("cirilicno", y)
+//   let cirillic=["а","б","в","г","д","ђ","е","ж","з","и","ј","к","л","љ","м","н","њ","о","п","р","с","т","ћ","у","ф","х","ц","ч","џ","ш","А","Б","В","Г","Д","Ђ","Е","Ж","З","И","Ј","К","Л","Љ","М","Н","Њ","О","П","Р","С","Т","Ћ","У","Ф","Х","Ц","Ч","Џ","Ш","Ѓ","ѓ","Ќ","ќ","Ѕ","ѕ"];
+//   let latinic=["a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","Đ","đ","Ć","ć","DZ","dz"];
+//   for(let index=0; index<cirillic.length; index++){
+//     y=y.replace(cirillic[index],latinic[index])
+//   }
+//   // console.log("latinicno", y)
+//   return y
+// }
 function oneToAnother(x){
     const serLat=["č","ć","ž","đ","š"];
   const engLat=["c","c","z","dj","s"];
@@ -596,21 +600,31 @@ function oneToAnother(x){
 app.get("/search", async (req, res) => {
     timelapseint = 127604800000;  
   let { term } = req.query;
-  console.log("ovo je","nesto", oneToAnother(cirToLat(term)));
-  
-  // console.log("new term", term)
-  let articles = [];
+  let translitTerm=oneToAnother(convert(term));
+  let convertTerm=convert(term);
+  console.log("ovo je","nesto", term);
   let allArticles = await source();
-  allArticles.forEach((article) => {
-    if (
-      oneToAnother(cirToLat(article.title)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
-      oneToAnother(cirToLat(article.content)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
-      oneToAnother(cirToLat(article.source)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true
-    ) {
-      console.log("new term", article.title, article.date)
-      articles.push(article);
-    }
-  });
+  let miniSearch = new MiniSearch({
+    idField: 'link', 
+    fields: ['title', 'content','source'], // fields to index for full-text search
+     storeFields: ['title', 'content','source','link','image','date','logo','drzava','contentToShow','category'] // fields to return with search results
+  })
+  miniSearch.addAll(allArticles);
+  let articles = miniSearch.search(term)
+
+   console.log("new term", articles)
+  // let articles = [];
+  // let allArticles = await source();
+  // allArticles.forEach((article) => {
+  //   if (
+  //     oneToAnother(cirToLat(article.title)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
+  //     oneToAnother(cirToLat(article.content)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
+  //     oneToAnother(cirToLat(article.source)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true
+  //   ) {
+  //     console.log("new term", article.title, article.date)
+  //     articles.push(article);
+  //   }
+  // });
   res.render("searched", { articles, moment, title: "Rezultat pretrage",timelapseint });
 });
 

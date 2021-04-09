@@ -44,7 +44,7 @@ const getArticles = async (feed, reqLinks) => {
       if (typeof item.enclosure !== "undefined") {
         imageLink = item.enclosure.url;
       }
-      // let category=[];
+     
       // if (item.category){
       //   category.push(item.category);
       // }
@@ -56,7 +56,9 @@ const getArticles = async (feed, reqLinks) => {
       ) {    
         let contentToShow;
         let content;
+        let category=[];
         if(item.categories){
+          category.push(item.categories);
           // console.log("title is ",feed.name);
           // console.log("categories are ",item.categories);
         }
@@ -76,7 +78,8 @@ const getArticles = async (feed, reqLinks) => {
           source: feed.name,
           logo:feed.logoURL,
           drzava: feed.drzava,
-          contentToShow: contentToShow
+          contentToShow: contentToShow,
+          category:category
         });
       }
     });

@@ -23,12 +23,15 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
+    "cyrillic-to-latin": "^2.0.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "minisearch": "^3.0.2",
     "moment-timezone": "^0.5.32",
     "nedb": "^1.8.0",
     "redis": "^3.0.2",
     "redis-server": "^1.2.2",
-    "rss-parser": "^3.10.0"
+    "rss-parser": "^3.10.0",
+    "transliter": "^2.2.1"
   }
 }
