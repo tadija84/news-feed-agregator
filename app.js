@@ -61,7 +61,7 @@ app.get("/", async (req, res) => {
   }
   articles.forEach((article) => {
     if(article.category){
-      console.log("category is", article.category)
+      console.log("category is",article.source, article.category)
     }
   });
   return res.render("index", { articles, moment, title: "Home", timelapseint });
@@ -429,9 +429,28 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
     link: req.query.articleLink,
     logo: req.query.sourceLogo,
     image: req.query.artImage,
+    category: req.query.artCat.split(",")
   };
+  let articles=[];
+  // console.log("article.category",typeof article.category)
+  if (article.category&&article.category.length>0){
+    let  term  = article.category[0];
+    let translitTerm=oneToAnother(convert(term));
+    let convertTerm=convert(term);
+    let allVers=transliter(term);
+    let toCyr=latToCir(term);
+    console.log("ovo je","nesto", term);
+    let allArticles = await source();
+    let miniSearch = new MiniSearch({
+      idField: 'link', 
+      fields: ['title', 'content','source','category'], // fields to index for full-text search
+       storeFields: ['title', 'content','source','link','image','date','logo','drzava','contentToShow','category'] // fields to return with search results
+    })
+    miniSearch.addAll(allArticles);
+    articles = miniSearch.search(`${term} ${translitTerm} ${convertTerm} ${allVers} ${toCyr}`)
+  }
   saveAsRead(article);
-  res.render("preview", { article, moment, title: "Pregled vesti",timelapseint });
+  res.render("preview", { article, moment, title: "Pregled vesti",timelapseint, articles});
 });
 
 function saveAsRead(article) {
@@ -579,16 +598,16 @@ app.get("/najcitanije", async (req, res) => {
   });
 });
 
-// function cirToLat(y){
-//   // console.log("cirilicno", y)
-//   let cirillic=["а","б","в","г","д","ђ","е","ж","з","и","ј","к","л","љ","м","н","њ","о","п","р","с","т","ћ","у","ф","х","ц","ч","џ","ш","А","Б","В","Г","Д","Ђ","Е","Ж","З","И","Ј","К","Л","Љ","М","Н","Њ","О","П","Р","С","Т","Ћ","У","Ф","Х","Ц","Ч","Џ","Ш","Ѓ","ѓ","Ќ","ќ","Ѕ","ѕ"];
-//   let latinic=["a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","Đ","đ","Ć","ć","DZ","dz"];
-//   for(let index=0; index<cirillic.length; index++){
-//     y=y.replace(cirillic[index],latinic[index])
-//   }
-//   // console.log("latinicno", y)
-//   return y
-// }
+function latToCir(y){
+  // console.log("latinicno", y)
+  let cyrillic=["а","б","в","г","д","ђ","е","ж","з","и","ј","к","л","љ","м","н","њ","о","п","р","с","т","ћ","у","ф","х","ц","ч","џ","ш","А","Б","В","Г","Д","Ђ","Е","Ж","З","И","Ј","К","Л","Љ","М","Н","Њ","О","П","Р","С","Т","Ћ","У","Ф","Х","Ц","Ч","Џ","Ш","Њ","Љ","Џ","Ђ","Ђ","ђ"];
+  let latinic=["a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","A","B","V","G","D","Đ","E","Ž","Z","I","J","K","L","LJ","M","N","NJ","O","P","S","R","T","Ć","U","F","H","C","Č","DŽ","Š","Nj","Lj","Dž","DJ","Dj","dj"];
+  for(let index=0; index<cyrillic.length; index++){
+    y=y.replace(latinic[index],cyrillic[index])
+  }
+  // console.log("cirilicno", y)
+  return y
+}
 function oneToAnother(x){
     const serLat=["č","ć","ž","đ","š"];
   const engLat=["c","c","z","dj","s"];
@@ -602,17 +621,19 @@ app.get("/search", async (req, res) => {
   let { term } = req.query;
   let translitTerm=oneToAnother(convert(term));
   let convertTerm=convert(term);
+  let allVers=transliter(term);
+  let toCyr=latToCir(term);
   console.log("ovo je","nesto", term);
   let allArticles = await source();
   let miniSearch = new MiniSearch({
     idField: 'link', 
-    fields: ['title', 'content','source'], // fields to index for full-text search
+    fields: ['title', 'content','source','category'], // fields to index for full-text search
      storeFields: ['title', 'content','source','link','image','date','logo','drzava','contentToShow','category'] // fields to return with search results
   })
   miniSearch.addAll(allArticles);
-  let articles = miniSearch.search(term)
+  let articles = miniSearch.search(`${term} ${translitTerm} ${convertTerm} ${allVers} ${toCyr}`)
 
-   console.log("new term", articles)
+  //  console.log("new term", articles)
   // let articles = [];
   // let allArticles = await source();
   // allArticles.forEach((article) => {

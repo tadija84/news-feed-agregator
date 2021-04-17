@@ -63,7 +63,7 @@
                                  </div>
                             
                             </div>
-                          
+                         
                         </div>
                         <div class="soc-nets">
                             <div class="fb-share-button" data-href="<%= article.link %>" data-layout="button_count">
@@ -78,11 +78,21 @@
                                 title="Share by Email">
                                 <img src="http://png-2.findicons.com/files/icons/573/must_have/48/mail.png">
                             </a>
-                        </div>
-
-                    </div>
+                        </div>   
+                    </div> 
+                   
                 </div>
-
+                <% if (article.category&&article.category.length>0) { %>
+                  
+                    <div class="column is-full"> 
+                         <p>Kategorije:
+                    <% article.category.forEach(function(oneCat) { %> 
+                        &#35;<%= oneCat %>
+                    <% }); %></p>
+                    <p>Povezane vesti:</p>
+                        <%- include('./partials/sele-articles.ejs')%>
+                    </div>
+                <% }; %>
             </div>
         </div>
     </section>

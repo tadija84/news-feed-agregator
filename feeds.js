@@ -443,4 +443,4 @@ const novaMakedonija = {
    
 };
 //vratiti politiku, nesto nece da radi kako valja
-module.exports = [nedeljnik,novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
+module.exports = [politika,nedeljnik,novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
