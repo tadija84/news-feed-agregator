@@ -4,8 +4,6 @@
 body {
 }
 .hero_header {
-  position: sticky;
-  position: -webkit-sticky;
   top: 0;
   display: block;
   z-index: 7;
@@ -52,7 +50,7 @@ body {
   width: 100%;
   position: sticky;
   position: -webkit-sticky;
-  top: 15vh; 
+  top: 0; 
   z-index: 7;
 }
 .navigation-list {
@@ -106,7 +104,7 @@ body {
 }
 .sub-menu {
   display: none;
-  width: 60vw;
+  width: 63vw;
   position: absolute;
   top: 50px;
   margin: 0 auto;
@@ -125,8 +123,8 @@ body {
 }
 .sub-nav-tab {
   position: relative;
-  width: 100%;
-  padding: 5px 0;
+  width: 9vw;
+  padding: 5px 0px;
   background-color: rgba(0, 122, 255, 0.5);
   text-align: center;
 }
@@ -135,6 +133,8 @@ body {
   color: white;
 }
 .sub-nav-tab > a {
+  display: flex;
+  justify-content: center;
   color: white;
 }
 
@@ -305,6 +305,11 @@ body {
   width: 90%;
   padding: 5%;
 }
+.prev-content{
+  margin-top: 15px;
+  width: 90%;
+  padding:0 5%;
+}
 .day-n-time {
   color: gray;
   font-size: 0.7em;
@@ -329,6 +334,11 @@ body {
   font-weight: 600;
   line-height: 1.125;
 }
+.tags-cont{
+  margin: 15px auto;
+  font-size: 1em;
+  padding-left: 5%;
+}
 .buttons-container {
   display: flex;
   width: 100%;
@@ -344,7 +354,12 @@ body {
   border-radius: 5px;
   background-color: #007aff;
   color: white;
-  padding: 5px 0;
+  padding: 5px 10px;
+}
+.povezane-heads{
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
 }
 .naslov-terminusa {
   font-size: 3em;

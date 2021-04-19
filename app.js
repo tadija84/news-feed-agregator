@@ -3,12 +3,14 @@ const app = express();
 const path = require("path");
 var bodyParser = require("body-parser");
 
+require('./error-handling');
+
 const Datastore = require("nedb");
 
 const MiniSearch = require('minisearch')
 const { transliter } = require('transliter');
-const convert = require('cyrillic-to-latin')
-
+const convert = require('cyrillic-to-latin');
+const convesionToCyr= require('serbian-transliteration');
 const { existsAsync, setAsync, getAsync } = require("./redis");
 const {
   source,
@@ -32,13 +34,12 @@ const database = new Datastore("database.db");
 database.loadDatabase();
 
 
+
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
 app.use(bodyParser.json());
 
 app.use(cookieParser());
@@ -49,7 +50,6 @@ app.get("/", async (req, res) => {
     timelapseint = 604800000;
     res.cookie("timelapseint", timelapseint);
   }
- 
   let articles = null;
   if ((await existsAsync("articles")) === 1) {
     articles = JSON.parse(await getAsync("articles"));
@@ -59,11 +59,6 @@ app.get("/", async (req, res) => {
     
     await setAsync("articles", 1800, JSON.stringify(articles));
   }
-  articles.forEach((article) => {
-    if(article.category){
-      console.log("category is",article.source, article.category)
-    }
-  });
   return res.render("index", { articles, moment, title: "Home", timelapseint });
 });
 
@@ -281,7 +276,6 @@ app.get("/selected/", async (req, res) => {
     res.cookie("timelapseint", timelapseint);
   }
   let linkPath = req.query.articleLink;
-  console.log("putanja je ", linkPath);
   res.render("selected", { linkPath, title: "Selected",timelapseint });
 });
 app.get("/ljubimci", async (req, res) => {
@@ -432,7 +426,6 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
     category: req.query.artCat.split(",")
   };
   let articles=[];
-  // console.log("article.category",typeof article.category)
   if (article.category&&article.category.length>0){
     let  term  = article.category[0];
     let translitTerm=oneToAnother(convert(term));
@@ -599,13 +592,11 @@ app.get("/najcitanije", async (req, res) => {
 });
 
 function latToCir(y){
-  // console.log("latinicno", y)
   let cyrillic=["а","б","в","г","д","ђ","е","ж","з","и","ј","к","л","љ","м","н","њ","о","п","р","с","т","ћ","у","ф","х","ц","ч","џ","ш","А","Б","В","Г","Д","Ђ","Е","Ж","З","И","Ј","К","Л","Љ","М","Н","Њ","О","П","Р","С","Т","Ћ","У","Ф","Х","Ц","Ч","Џ","Ш","Њ","Љ","Џ","Ђ","Ђ","ђ"];
   let latinic=["a","b","v","g","d","đ","e","ž","z","i","j","k","l","lj","m","n","nj","o","p","r","s","t","ć","u","f","h","c","č","dž","š","A","B","V","G","D","Đ","E","Ž","Z","I","J","K","L","LJ","M","N","NJ","O","P","S","R","T","Ć","U","F","H","C","Č","DŽ","Š","Nj","Lj","Dž","DJ","Dj","dj"];
   for(let index=0; index<cyrillic.length; index++){
     y=y.replace(latinic[index],cyrillic[index])
   }
-  // console.log("cirilicno", y)
   return y
 }
 function oneToAnother(x){
@@ -623,29 +614,26 @@ app.get("/search", async (req, res) => {
   let convertTerm=convert(term);
   let allVers=transliter(term);
   let toCyr=latToCir(term);
-  console.log("ovo je","nesto", term);
+  let cirilicno= convesionToCyr.toCyrillic( term );
+  console.log("ovo je nesto", cirilicno);
   let allArticles = await source();
+  let politicArts = await politika();
+  let drusArts = await drustvo();
+  let vestiArts =  await vesti();
+  let kulturArts = await kultura();
+  let zanimArts = await zanimljivosti();
+  let sportArts = await sport();
+  let petArts = await ljubimci();
+  let travelArts = await putovanja();
+  let cryptoArts = await cryptocurrency();
+  let hitechArts = hitech();
   let miniSearch = new MiniSearch({
     idField: 'link', 
     fields: ['title', 'content','source','category'], // fields to index for full-text search
      storeFields: ['title', 'content','source','link','image','date','logo','drzava','contentToShow','category'] // fields to return with search results
   })
-  miniSearch.addAll(allArticles);
-  let articles = miniSearch.search(`${term} ${translitTerm} ${convertTerm} ${allVers} ${toCyr}`)
-
-  //  console.log("new term", articles)
-  // let articles = [];
-  // let allArticles = await source();
-  // allArticles.forEach((article) => {
-  //   if (
-  //     oneToAnother(cirToLat(article.title)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
-  //     oneToAnother(cirToLat(article.content)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true ||
-  //     oneToAnother(cirToLat(article.source)).toLowerCase().includes(oneToAnother(cirToLat(term)).toLowerCase()) == true
-  //   ) {
-  //     console.log("new term", article.title, article.date)
-  //     articles.push(article);
-  //   }
-  // });
+  miniSearch.addAll(allArticles,politicArts,drusArts,vestiArts,kulturArts,zanimArts,sportArts,petArts,travelArts,cryptoArts,hitechArts);
+  let articles = miniSearch.search(`${term} ${translitTerm} ${convertTerm} ${allVers} ${toCyr} ${cirilicno}`)
   res.render("searched", { articles, moment, title: "Rezultat pretrage",timelapseint });
 });
 

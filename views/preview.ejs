@@ -46,11 +46,19 @@
                                 <time class="day-n-time"
                                     datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
                             </div>
-                            <div class="content">
+                            <div class="prev-content">
                                 <%= article.content %>
                                 <!-- <time class="has-text-weight-medium"
                                     datetime="<%= article.date %>"><%= moment(article.date).tz('Pacific/Auckland').format('dddd, MMMM Do YYYY, h:mm:ss a'); %></time> -->
                             </div>
+                            <% if (article.category&&article.category.length>0) { %>
+                                <div class="tags-cont"> 
+                                    <p>Tagovi:
+                               <% article.category.forEach(function(oneCat) { %> 
+                                   &#35;<%= oneCat %>
+                               <% }); %></p>
+                               </div>
+                                <% }; %>
                             <div class="buttons-container">
                                 <div class="article-link-div">
                                 <a href="/selected/?articleLink=<%= article.link %> "
@@ -85,12 +93,8 @@
                 <% if (article.category&&article.category.length>0) { %>
                   
                     <div class="column is-full"> 
-                         <p>Kategorije:
-                    <% article.category.forEach(function(oneCat) { %> 
-                        &#35;<%= oneCat %>
-                    <% }); %></p>
-                    <p>Povezane vesti:</p>
-                        <%- include('./partials/sele-articles.ejs')%>
+                    <h3 class="povezane-heads">Povezane vesti:</h3>
+                        <%- include('./partials/related-articles.ejs')%>
                     </div>
                 <% }; %>
             </div>

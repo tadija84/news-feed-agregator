@@ -5,7 +5,7 @@ const parser = new Parser({
   },
 });
 const feeds = require("./feeds");
-
+// const winston = require('winston');
 const requestRss = async (urls) => {
   try {
     const feedLinks = urls.map((url) => parser.parseURL(url));
@@ -31,6 +31,7 @@ const requestRss = async (urls) => {
   } catch (e) {
     console.error("ERROR IS in sources.js",e,urls);
     console.log(e.message);
+    // winston.error(e.message,e);
     return;
   }
 };

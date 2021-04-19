@@ -16,14 +16,10 @@
             <% }; %>
             <div class="media-source">
                 <div class="article-source-logo"  style="background-image: url(../../images/logoi-portala/<%=`${article.logo}`%>)"></div>
-              
-                <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;"> -->
-                <time class="day-n-time"
+               <time class="day-n-time"
                     datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
-
             </div>
             <div class="media media-data">
-
                 <div class="media-content">
                     <a href="/preview/<%=`${article.title}`%>/<%=`${article.content}`%>/<%=`${article.source}`%>?articleLink=<%=article.link%>&sourceLogo=<%=article.logo%>&artImage=<%=article.image%>&artCat=<%=article.category%>  "
                         class="title is-4"><%= article.title %></a>

@@ -442,5 +442,123 @@ const novaMakedonija = {
    drzava: ['makedonija']
    
 };
-//vratiti politiku, nesto nece da radi kako valja
-module.exports = [politika,nedeljnik,novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
+const vijesti = {
+    logoURL: '', 
+   name: 'Vijesti',
+   links: ['https://www.vijesti.me/rss'],
+   politika: ['https://www.vijesti.me/rss/vijesti/politika'],
+   drustvo: ['https://www.vijesti.me/rss/vijesti/drustvo'],
+   hronika: ['https://www.vijesti.me/rss/vijesti/crna-hronika'],
+   vesti: ['https://www.vijesti.me/rss/vijesti'],
+   kultura: ['https://www.vijesti.me/rss/kultura'],
+   zanimljivosti: ['https://www.vijesti.me/rss/zabava'],
+   sport: ['https://www.vijesti.me/rss/sport'],
+   ljubimci: ['https://www.vijesti.me/rss/zabava/zivotinje'],
+   putovanja: [],
+   kripto: [],
+   hitech: ['https://www.vijesti.me/rss/vijesti/tehno','https://www.vijesti.me/rss/vijesti/m-tech'],
+   drzava: ['crna-gora']  
+};
+const aktuelno = {
+    logoURL: '', 
+   name: 'Aktuelno.me',
+   links: ['https://www.aktuelno.me/feed/'],
+   politika: ['https://www.aktuelno.me/politika/feed/'],
+   drustvo: ['https://www.aktuelno.me/crna-gora/feed/'],
+   hronika: [],
+   vesti: [],
+   kultura: [],
+   zanimljivosti: ['https://www.aktuelno.me/magazin/feed/'],
+   sport: ['https://www.aktuelno.me/sport/feed/'],
+   ljubimci: [],
+   putovanja: [],
+   kripto: [],
+   hitech: ['https://www.aktuelno.me/digital/feed/'],
+   drzava: ['crna-gora']  
+};
+const mondoCG = {
+    logoURL: '', 
+   name: 'Mondo.me',
+   links: ['https://mondo.me/rss/629/Naslovna'],
+   politika: [],
+   drustvo: [],
+   hronika: [],
+   vesti: [],
+   kultura: [],
+   zanimljivosti: [],
+   sport: [],
+   ljubimci: [],
+   putovanja: [],
+   kripto: [],
+   hitech: [],
+   drzava: ['crna-gora']  
+};
+const novosti = {
+    logoURL: '', 
+   name: 'Večernje novosti',
+   links: ['https://www.novosti.rs/rss/vesti'],
+   politika: ['https://www.novosti.rs/rss/vesti/politika'],
+   drustvo: ['https://www.novosti.rs/rss/vesti/drustvo'],
+   hronika: ['https://www.novosti.rs/rss/hronika'],
+   vesti: ['https://www.novosti.rs/rss/vesti'],
+   kultura: ['https://www.novosti.rs/rss/kultura'],
+   zanimljivosti: [],
+   sport: ['https://www.novosti.rs/rss/sport'],
+   ljubimci: [],
+   putovanja: [],
+   kripto: [],
+   hitech: [],
+   drzava: ['srbija']  
+};
+const DCSata = {
+    logoURL: '', 
+   name: '24 Sata',
+   links: ['https://www.24sata.hr/feeds/news.xml'],
+   politika: [],
+   drustvo: [],
+   hronika: [],
+   vesti: ['https://www.24sata.hr/feeds/najnovije.xml'],
+   kultura: [],
+   zanimljivosti: ['https://www.24sata.hr/feeds/lifestyle.xml'],
+   sport: ['https://www.24sata.hr/feeds/sport.xml'],
+   ljubimci: [],
+   putovanja: [],
+   kripto: [],
+   hitech: ['https://www.24sata.hr/feeds/tech.xml'],
+   drzava: ['hrvatska']  
+};
+const indexHr = {
+    logoURL: '', 
+   name: 'Index.hr',
+   links: ['https://www.index.hr/rss'],
+   politika: [],
+   drustvo: [],
+   hronika: ['https://www.index.hr/rss/vijesti-crna-kronika'],
+   vesti: ['https://www.index.hr/rss/vijesti'],
+   kultura: [],
+   zanimljivosti: ['https://www.index.hr/rss/magazin-zanimljivosti'],
+   sport: ['https://www.index.hr/rss/sport'],
+   ljubimci: ['https://www.index.hr/rss/ljubimci'],
+   putovanja: [],
+   kripto: [],
+   hitech: ['https://www.index.hr/rss/magazin-tech-gadget'],
+   drzava: ['hrvatska']  
+};
+const noviList = {
+    logoURL: '', 
+   name: 'Novi list',
+   links: ['https://www.novilist.hr/feed/'],
+   politika: [],
+   drustvo: [],
+   hronika: ['https://www.novilist.hr/novosti/crna-kronika/feed/'],
+   vesti: [],
+   kultura: ['https://www.novilist.hr/ostalo/kultura/feed/'],
+   zanimljivosti: ['https://www.novilist.hr/life/feed/'],
+   sport: ['https://www.novilist.hr/sport/feed/'],
+   ljubimci: [],
+   putovanja: [],
+   kripto: [],
+   hitech: ['https://www.novilist.hr/ostalo/sci-tech/feed/'],
+   drzava: ['hrvatska']  
+};
+module.exports = [noviList,indexHr,DCSata,novosti,mondoCG,aktuelno,vijesti,politika,nedeljnik,novaMakedonija,fokus,makedonskiKurir, makedonskiVesnik,telegraf,kurir, novaS, srbijaDanas, pinkRs, blicZena, republika, mondo,direktno,blic, danas, jutarnji, slobodnaDalmacija, oslobodjenje, dnevniAvaz];
