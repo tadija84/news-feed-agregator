@@ -1,8 +1,8 @@
-<div class="hero_head">
+<div class="hero_header">
     <div class="titles-n-subtitles">
         <a href="/" class="logo-link-text">
             <h3 class=" big-page-title">
-                BALKANEWS
+                Medi<span class="red-yu">YU</span>m
             </h3>
         </a>
         <p class="subtitle">Сите новости на едно место</p>
@@ -118,6 +118,18 @@
 </nav>
 
 <script>
+    let prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    let currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementsByClassName("hero_header")[0].style.top = "0";
+        document.getElementById("navigation-bar").style.top = "17vh";
+      } else {
+        document.getElementsByClassName("hero_header")[0].style.top = "-17vh";
+        document.getElementById("navigation-bar").style.top = "0";
+      }
+      prevScrollpos = currentScrollPos;
+    }
     const menuBtn = document.querySelector(".menu-button");
     const hamburger = document.querySelector(".menu-button__burger");
     const navigationBar = document.querySelector("#navigation-bar");

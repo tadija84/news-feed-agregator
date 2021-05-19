@@ -359,7 +359,7 @@ const telegraf = {
    drzava: ['srbija']
 };
 const makedonskiVesnik = {
-    logoURL: '',
+    logoURL: 'makedonski-vesnik.jpg',
   
    name: 'Македонски весник',
    links: [
@@ -380,7 +380,7 @@ const makedonskiVesnik = {
    drzava: ['makedonija']
 };
 const makedonskiKurir = {
-    logoURL: '',
+    logoURL: 'kurir-mk-logo.jpg',
   
    name: 'Курир.mk',
    links: [
@@ -401,7 +401,7 @@ const makedonskiKurir = {
    drzava: ['makedonija']
 };
 const fokus = {
-    logoURL: '',
+    logoURL: 'FOKUS-logo1.jpg',
    name: 'Фокус',
    links: [
        'https://fokus.mk/feed/'
@@ -421,7 +421,7 @@ const fokus = {
    drzava: ['makedonija']
 };
 const novaMakedonija = {
-    logoURL: '',
+    logoURL: 'nova-makedonija.jpg',
   
    name: 'Нова Македонија',
    links: [
@@ -443,7 +443,7 @@ const novaMakedonija = {
    
 };
 const vijesti = {
-    logoURL: '', 
+    logoURL: 'vijesti-logo.jpg', 
    name: 'Vijesti',
    links: ['https://www.vijesti.me/rss'],
    politika: ['https://www.vijesti.me/rss/vijesti/politika'],
@@ -460,7 +460,7 @@ const vijesti = {
    drzava: ['crna-gora']  
 };
 const aktuelno = {
-    logoURL: '', 
+    logoURL: 'aktuelno-logo.jpg', 
    name: 'Aktuelno.me',
    links: ['https://www.aktuelno.me/feed/'],
    politika: ['https://www.aktuelno.me/politika/feed/'],
@@ -477,7 +477,7 @@ const aktuelno = {
    drzava: ['crna-gora']  
 };
 const mondoCG = {
-    logoURL: '', 
+    logoURL: 'mondo.jpg', 
    name: 'Mondo.me',
    links: ['https://mondo.me/rss/629/Naslovna'],
    politika: [],
@@ -494,7 +494,7 @@ const mondoCG = {
    drzava: ['crna-gora']  
 };
 const novosti = {
-    logoURL: '', 
+    logoURL: 'vecernje-novosti-logo.jpg', 
    name: 'Večernje novosti',
    links: ['https://www.novosti.rs/rss/vesti'],
    politika: ['https://www.novosti.rs/rss/vesti/politika'],
@@ -511,7 +511,7 @@ const novosti = {
    drzava: ['srbija']  
 };
 const DCSata = {
-    logoURL: '', 
+    logoURL: 'hr24sata.jpg', 
    name: '24 Sata',
    links: ['https://www.24sata.hr/feeds/news.xml'],
    politika: [],
@@ -528,7 +528,7 @@ const DCSata = {
    drzava: ['hrvatska']  
 };
 const indexHr = {
-    logoURL: '', 
+    logoURL: 'index-hr.jpg', 
    name: 'Index.hr',
    links: ['https://www.index.hr/rss'],
    politika: [],
@@ -545,7 +545,7 @@ const indexHr = {
    drzava: ['hrvatska']  
 };
 const noviList = {
-    logoURL: '', 
+    logoURL: 'Novi_list_Logo.jpg', 
    name: 'Novi list',
    links: ['https://www.novilist.hr/feed/'],
    politika: [],

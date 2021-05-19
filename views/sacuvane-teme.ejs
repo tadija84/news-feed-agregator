@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="sr">
+<%- include('./partials/head.ejs')%>
+
+<body>
+
+            <%- include('./partials/header.ejs')%>
+    <p class="page-subtitle">Sačuvane teme:</p>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="columns is-multiline">
+                <div class="column is-full">
+                    <% if (categoriesArr == null) { %>
+                        <p class="no-saved-articles">Nema sačuvanih tema</p>
+                        <% }else{ %>
+                    <% for (let i=0; i< categoriesArr.length; i++){ %>
+                        <% console.log("this is else") %>
+                       <p class="saved-articles"><%=  categoriesArr[i].category %></p>
+                    <% };}; %>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

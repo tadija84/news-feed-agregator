@@ -2,137 +2,153 @@
 <html lang="sr">
 <%- include('./partials/head.ejs')%>
 
-<body>
-    <script>(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-     
-            <%- include('./partials/header.ejs')%>
-            
-    <section class="section prev-section">
-        <div class="container is-fluid">
-            <div class="columns is-multiline">
-                <div class="column is-half is-offset-one-quarter">
-                    <div class="card">
-                        <div class="card-selected">
-                            <% if (article.image) { %>
-                            <div class="media-left">
-                                <figure class="image ">
-                                    <img src="<%= article.image %>" alt="Article Image">
-                                </figure>
-                            </div>
-                            <% }; %>
-                            <div class="media">
+    <body>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
 
-
-                                <div class="media-content">
-                                    <p class="title is-4"><%= article.title %></p>
-                                    <!-- <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-                                        <%= article.source %></p> -->
-                                    <!-- <div class="article-source-logo"  style="background-image: url(../public/images/logoi-portala/<%=`${article.logo}`%>)"></div> -->
- 
-                                    <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px"
-                                        style="background-color: red;"> -->
+        <%- include('./partials/header.ejs')%>
+        <section class="section prev-section">
+            <div class="container is-fluid">
+                <div class="columns is-multiline">
+                    <div class="column is-half is-offset-one-quarter">
+                        <div class="card">
+                            <div class="card-selected">
+                                <% if (article.image) { %>
+                                <div class="media-left">
+                                    <figure class="image ">
+                                        <img src="<%= article.image %>" alt="Article Image">
+                                    </figure>
                                 </div>
-                            </div>
-                            <div class="media-source">
-                                <!-- <div class="article-source-logo" style="background-image: url(../images/no-image.jpg);border: solid black 1px"></div> -->
-                                <div class="article-source-logo-prev"  style="background-image: url(../../../images/logoi-portala/<%=`${article.logo}`%>)"></div>
-                                <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;"> -->
-                                <time class="day-n-time"
-                                    datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
-                            </div>
-                            <div class="prev-content">
-                                <%= article.content %>
-                                <!-- <time class="has-text-weight-medium"
-                                    datetime="<%= article.date %>"><%= moment(article.date).tz('Pacific/Auckland').format('dddd, MMMM Do YYYY, h:mm:ss a'); %></time> -->
-                            </div>
-                            <% if (article.category&&article.category.length>0) { %>
-                                <div class="tags-cont"> 
-                                    <p>Tagovi:
-                               <% article.category.forEach(function(oneCat) { %> 
-                                   &#35;<%= oneCat %>
-                               <% }); %></p>
-                               </div>
                                 <% }; %>
-                            <div class="buttons-container">
-                                <div class="article-link-div">
-                                <a href="/selected/?articleLink=<%= article.link %> "
-                                    class="title is-4 article-link">PROČITAJTE VIŠE</a>
-                                 </div>
-                                <div class="article-link-div">
-                                <button class="title article-link is-4"
-                                onclick="saveArticle( '<%= article.title %>','<%= article.content %>','<%= article.source %>','<%= article.link %>', '<%= article.logo %>','<%= article.image %>')">Sačuvaj
-                                ovaj članak</button>
-                                 </div>
-                            
+                                <div class="media">
+    
+    
+                                    <div class="media-content">
+                                        <p class="title is-4"><%= article.title %></p>
+                                        <!-- <p class="subtitle is-6" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                                            <%= article.source %></p> -->
+                                        <!-- <div class="article-source-logo"  style="background-image: url(../public/images/logoi-portala/<%=`${article.logo}`%>)"></div> -->
+     
+                                        <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px"
+                                            style="background-color: red;"> -->
+                                    </div>
+                                </div>
+                                <div class="media-source">
+                                    <!-- <div class="article-source-logo" style="background-image: url(../images/no-image.jpg);border: solid black 1px"></div> -->
+                                    <div class="article-source-logo-prev"  style="background-image: url(../../../images/logoi-portala/<%=`${article.logo}`%>)"></div>
+                                    <!-- <img src="<%= article.logo %>" alt="" width="35px" height="15px" style="background-color: red;"> -->
+                                    <time class="day-n-time"
+                                        datetime="<%= article.date %>"><%= moment(article.date).tz('Europe/Belgrade').format('dddd, Do MMMM YYYY, HH:mm:ss '); %></time>
+                                </div>
+                                <div class="prev-content">
+                                    <%= article.content %>
+                                    <!-- <time class="has-text-weight-medium"
+                                        datetime="<%= article.date %>"><%= moment(article.date).tz('Pacific/Auckland').format('dddd, MMMM Do YYYY, h:mm:ss a'); %></time> -->
+                                </div>
+                                <% if (article.category&&article.category.length>0) { %>
+                                    <div class="tags-cont"> 
+                                        <p>Tagovi:
+                                   <% article.category.forEach(function(oneCat) { %> 
+                                    <button class="title is-4"
+                                    onclick="saveCategory( '<%= oneCat %>')"> &#35;<%= oneCat %></button>
+                                   <% }); %></p>
+                                   </div>
+                                    <% }; %>
+                                <div class="buttons-container">
+                                    <div class="article-link-div">
+                                    <a href="/selected/?articleLink=<%= article.link %> "
+                                        class="title is-4 article-link">PROČITAJTE VIŠE</a>
+                                     </div>
+                                    <div class="article-link-div">
+                                    <button class="title article-link is-4"
+                                    onclick="saveArticle( '<%= article.title %>','<%= article.content %>','<%= article.source %>','<%= article.link %>', '<%= article.logo %>','<%= article.image %>')">Sačuvaj
+                                    ovaj članak</button>
+                                     </div>
+                                
+                                </div>
+                             
                             </div>
-                         
-                        </div>
-                        <div class="soc-nets">
-                            <div class="fb-share-button" data-href="<%= article.link %>" data-layout="button_count">
-                            </div>
-                            <a class="twitter-share-button" data-show-count="false">Tweet</a>
-                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                            <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
-                            <a id="viber_share" class="viber_share"></a>
-                            <a href="viber://forward?text=<%=article.link%>">
-                                <i class="fab fa-viber" style="font-size:30px;color:#665CAC;"></i></a>
-                            <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site <%=article.link%>"
-                                title="Share by Email">
-                                <img src="http://png-2.findicons.com/files/icons/573/must_have/48/mail.png">
-                            </a>
-                        </div>   
-                    </div> 
-                   
-                </div>
-                <% if (article.category&&article.category.length>0) { %>
-                  
-                    <div class="column is-full"> 
-                    <h3 class="povezane-heads">Povezane vesti:</h3>
-                        <%- include('./partials/related-articles.ejs')%>
+                            <div class="soc-nets">
+                                <div class="fb-share-button" data-href="<%= article.link %>" data-layout="button_count">
+                                </div>
+                                <a class="twitter-share-button" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
+                                <a id="viber_share" class="viber_share"></a>
+                                <a href="viber://forward?text=<%=article.link%>">
+                                    <i class="fab fa-viber" style="font-size:30px;color:#665CAC;"></i></a>
+                                <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site <%=article.link%>"
+                                    title="Share by Email">
+                                    <img src="http://png-2.findicons.com/files/icons/573/must_have/48/mail.png">
+                                </a>
+                            </div>   
+                        </div> 
+                       
                     </div>
-                <% }; %>
+                    <% if (article.category&&article.category.length>0) { %>
+                      
+                        <div class="column is-full"> 
+                        <h3 class="povezane-heads">Povezane vesti:</h3>
+                            <%- include('./partials/related-articles.ejs')%>
+                        </div>
+                    <% }; %>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <script>
-        async function saveArticle(title, content, source, link, logo, image) {
+            <script>
+                async function saveArticle(title, content, source, link, logo, image) {
 
-            let request = {
-                title: title,
-                content: content,
-                source: source,
-                link: link,
-                logo: logo,
-                image: image
-            };
-            let data = JSON.stringify(request);
-            let options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: 'include',
-                body: data,
-            };
-            fetch("/savearticle", options);
+                    let request = {
+                        title: title,
+                        content: content,
+                        source: source,
+                        link: link,
+                        logo: logo,
+                        image: image
+                    };
+                    let data = JSON.stringify(request);
+                    let options = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: 'include',
+                        body: data,
+                    };
+                    fetch("/savearticle", options);
 
-        };
+                };
 
-    </script>
-    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
-    <script>
-        var buttonID = "viber_share";
-        var text = "Check this out: ";
-        document.getElementById(buttonID)
-            .setAttribute('href', "https://3p3x.adj.st/?adjust_t=u783g1_kw9yml&adjust_fallback=https%3A%2F%2Fwww.viber.com%2F%3Futm_source%3DPartner%26utm_medium%3DSharebutton%26utm_campaign%3DDefualt&adjust_campaign=Sharebutton&adjust_deeplink=" + encodeURIComponent("viber://forward?text=" + encodeURIComponent(text + " " + window.location.href)));
-    </script>
-</body>
+                async function saveCategory(xcategory) {
+                    let request = {
+                        category: xcategory
+                    };
+                    let data = JSON.stringify(request);
+                    let options = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: 'include',
+                        body: data,
+                    };
+                    fetch("/savecategory", options);
+
+                };
+            </script>
+            <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+            <script>
+                var buttonID = "viber_share";
+                var text = "Check this out: ";
+                document.getElementById(buttonID)
+                    .setAttribute('href', "https://3p3x.adj.st/?adjust_t=u783g1_kw9yml&adjust_fallback=https%3A%2F%2Fwww.viber.com%2F%3Futm_source%3DPartner%26utm_medium%3DSharebutton%26utm_campaign%3DDefualt&adjust_campaign=Sharebutton&adjust_deeplink=" + encodeURIComponent("viber://forward?text=" + encodeURIComponent(text + " " + window.location.href)));
+            </script>
+    </body>
 
 </html>

@@ -447,11 +447,12 @@ app.get("/preview/:title/:content/:source/", async (req, res) => {
 });
 
 function saveAsRead(article) {
-  let date = new Date();
-  let time = date.getTime();
+  let now = new Date();
+  let time = now.getTime();
   let week = time - 604800000;
+  //43200000
   database.remove(
-    { timeOfSaving: { $lt: week } },
+    { date: { $lt: week} },
     { multi: true },
     function (err, numRemoved) {
       console.log("Number of old articles removed ", numRemoved);
@@ -504,6 +505,28 @@ app.post("/savearticle", async (req, res) => {
     res.send("");
   }
 });
+app.post("/savecategory", async (req, res) => {
+  const data = req.body;
+  let catToSave = {
+    category: data.category,
+   
+  };
+  let categoriesArr = [];
+
+  let cookie = await req.cookies["savedcategories"];
+  if (cookie !== undefined && cookie.includes(catToSave.category) !== true) {
+    categoriesArr = JSON.parse(cookie);
+    categoriesArr.push(catToSave);
+    let myJSON = JSON.stringify(categoriesArr);
+    res.cookie("savedcategories", myJSON);
+    res.send("");
+  } else {
+    categoriesArr.push(catToSave);
+    let myJSON = JSON.stringify(categoriesArr);
+    res.cookie("savedcategories", myJSON);
+    res.send("");
+  }
+});
 
 app.get("/sacuvane-vesti", async (req, res) => {
   let timelapseint = await req.cookies["timelapseint"];
@@ -521,6 +544,26 @@ app.get("/sacuvane-vesti", async (req, res) => {
     articles,
     moment,
     title: "Pregled sačuvanih vesti",
+    timelapseint
+  });
+});
+app.get("/zapracene-teme", async (req, res) => {
+  let timelapseint = await req.cookies["timelapseint"];
+  if (!timelapseint||timelapseint=="undefined") {
+    timelapseint = 604800000;
+    res.cookie("timelapseint", timelapseint);
+  }
+  let categoriesArr = null;
+  let cookie = await req.cookies["savedcategories"];
+  console.log("sacuvane su",categoriesArr)
+  if(cookie){
+    categoriesArr = JSON.parse(cookie);
+  }
+  console.log(categoriesArr)
+  res.render("sacuvane-teme", {
+    categoriesArr,
+    moment,
+    title: "Pregled sačuvanih tema",
     timelapseint
   });
 });
